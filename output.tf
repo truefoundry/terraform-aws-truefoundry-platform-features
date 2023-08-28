@@ -1,7 +1,7 @@
 # From https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/outputs.tf
 
 ################################################################################
-# User creds
+# User details
 ################################################################################
 
 output "platform_user_name" {
@@ -28,4 +28,25 @@ output "platform_user_secret_key" {
 output "policy_arns" {
   description = "The list of ARNs of policies directly assigned to the IAM user"
   value       = local.truefoundry_platform_user_policy_arns
+}
+
+################################################################################
+# Bucket details
+################################################################################
+output "platform_user_bucket_name" {
+  description = "The bucket's ID/name"
+  value       = var.feature_blob_storage_enabled ? module.truefoundry_bucket[0].s3_bucket_id : ""
+}
+
+output "platform_user_bucket_arn" {
+  description = "The bucket's arn"
+  value       = var.feature_blob_storage_enabled ? module.truefoundry_bucket[0].s3_bucket_arn : ""
+}
+
+################################################################################
+# ECR details
+################################################################################
+output "platform_user_ecr_url" {
+  description = "The ECR url to connect"
+  value       = var.feature_docker_registry_enabled ? "${var.aws_account_id}.dkr.ecr.${var.aws_region}.amazonaws.com" : ""
 }

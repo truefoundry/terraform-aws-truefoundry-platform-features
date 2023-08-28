@@ -7,8 +7,8 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_user_s3_policy_docu
     ]
 
     resources = [
-      "arn:aws:s3:::${module.truefoundry_bucket[0].s3_bucket_arn}",
-      "arn:aws:s3:::${module.truefoundry_bucket[0].s3_bucket_arn}/*"
+      module.truefoundry_bucket[0].s3_bucket_arn,
+      "${module.truefoundry_bucket[0].s3_bucket_arn}/*"
     ]
   }
 }

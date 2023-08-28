@@ -3,6 +3,17 @@
 ################################################################################
 # Global
 ################################################################################
+
+variable "aws_account_id" {
+  description = "AWS account id"
+  type        = string
+}
+
+variable "aws_region" {
+  description = "AWS region"
+  type        = string
+}
+
 variable "platform_feature_enabled" {
   description = "Enable platform features like docker registry, secrets manager and blob storage"
   type        = bool
@@ -58,7 +69,7 @@ variable "blob_storage_encryption_algorithm" {
 
 variable "blob_storage_force_destroy" {
   description = "Force destroy for mlfoundry s3 bucket"
-  default     = false
+  default     = true
   type        = bool
 }
 

@@ -105,7 +105,7 @@ resource "aws_iam_policy" "truefoundry_platform_feature_user_ecr_policy" {
 
 resource "aws_iam_role" "truefoundry_platform_feature_iam_role" {
   count                 = var.platform_feature_enabled ? 1 : 0
-  name                  = "${local.truefoundry_unique_name}-iam-role"
+  name                  = var.platform_role_enable_override ? var.platform_role_override_name : "${local.truefoundry_unique_name}-iam-role"
   description           = "IAM role for TrueFoundry to access S3 bucket, SSM and ECR"
   force_detach_policies = true
   assume_role_policy = jsonencode({

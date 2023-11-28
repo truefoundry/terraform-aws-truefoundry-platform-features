@@ -30,13 +30,25 @@ variable "cluster_name" {
 }
 
 ################################################################################
-# IAM user
+# IAM role
 ################################################################################
 
-variable "platform_user_force_destroy" {
-  description = "Enable force destroy of the user"
+variable "control_plane_roles" {
+  description = "Control plane roles that can assume your platform role"
+  type        = list(string)
+  default     = ["arn:aws:iam::416964291864:role/tfy-ctl-euwe1-production-truefoundry-deps"]
+}
+
+variable "platform_role_enable_override" {
+  description = "Enable overriding the platform role name. You need to pass s3_override_name to pass the bucket name"
   type        = bool
-  default     = true
+  default     = false
+}
+
+variable "platform_role_override_name" {
+  description = "Platform IAM role name which will have access to S3 bucket, SSM and ECR"
+  type        = string
+  default     = ""
 }
 
 ################################################################################
@@ -50,7 +62,7 @@ variable "feature_blob_storage_enabled" {
 }
 
 variable "blob_storage_enable_override" {
-  description = "Enable overriding name of s3 bucket. This will only be used if feature_blob_storage_enabled is enabled. You need to pass s3_override_name to pass the bucket name"
+  description = "Enable overriding the name of s3 bucket. This will only be used if feature_blob_storage_enabled is enabled. You need to pass s3_override_name to pass the bucket name"
   type        = bool
   default     = false
 }

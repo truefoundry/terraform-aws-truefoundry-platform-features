@@ -26,7 +26,7 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_user_ssm_policy_doc
       "ssm:GetParameterHistory"
     ]
     resources = [
-      "*"
+      "arn:aws:ssm:${var.aws_region}:${var.aws_account_id}:parameter/tfy-secret/*"
     ]
   }
 }
@@ -41,9 +41,7 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_user_ecr_policy_doc
       "ecr:GetLifecyclePolicyPreview",
       "ecr:CreateRepository",
       "ecr:GetDownloadUrlForLayer",
-      "ecr:DescribeRegistry",
       "ecr:DescribeImageReplicationStatus",
-      "ecr:GetAuthorizationToken",
       "ecr:ListTagsForResource",
       "ecr:BatchGetRepositoryScanningConfiguration",
       "ecr:GetRegistryScanningConfiguration",
@@ -59,12 +57,20 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_user_ecr_policy_doc
       "ecr:DescribeImages",
       "ecr:DeleteRepository",
       "ecr:UploadLayerPart",
-      "sts:GetServiceBearerToken"
     ]
 
     resources = [
-      "*"
+      "arn:aws:ecr:${var.aws_region}:${var.aws_account_id}:repository/tfy-*"
     ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "ecr:DescribeRegistry",
+      "ecr:GetAuthorizationToken",
+      "sts:GetServiceBearerToken"
+    ]
+    resources = ["*"]
   }
 }
 
@@ -94,39 +100,44 @@ resource "aws_iam_policy" "truefoundry_platform_feature_user_ecr_policy" {
 
 
 ################################################################################
-# IAM user
+# IAM role
 ################################################################################
 
-resource "aws_iam_user" "truefoundry_platform_user" {
-  count = var.platform_feature_enabled ? 1 : 0
+resource "aws_iam_role" "truefoundry_platform_feature_iam_role" {
+  count                 = var.platform_feature_enabled ? 1 : 0
+  name                  = "${local.truefoundry_unique_name}-iam-role"
+  description           = "IAM role for TrueFoundry to access S3 bucket, SSM and ECR"
+  force_detach_policies = true
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [for role in var.control_plane_roles : {
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
+      Sid    = ""
+      Principal = {
+        AWS = role
+      }
+      }
+    ]
+  })
 
-  name          = "${local.truefoundry_unique_name}-user"
-  path          = "/truefoundry/"
-  force_destroy = var.platform_user_force_destroy
-  tags          = local.tags
+  tags = local.tags
 }
 
-
-resource "aws_iam_access_key" "truefoundry_platform_user_keys" {
-  count = var.platform_feature_enabled ? 1 : 0
-
-  user = aws_iam_user.truefoundry_platform_user[0].name
-}
-
-resource "aws_iam_user_policy_attachment" "truefoundry_platform_user_s3_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_s3_policy_attachment" {
   count      = var.platform_feature_enabled ? var.feature_blob_storage_enabled ? 1 : 0 : 0
-  user       = aws_iam_user.truefoundry_platform_user[0].name
+  role       = aws_iam_role.truefoundry_platform_feature_iam_role[0].name
   policy_arn = aws_iam_policy.truefoundry_platform_feature_user_s3_policy[0].arn
 }
 
-resource "aws_iam_user_policy_attachment" "truefoundry_platform_user_ssm_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_ssm_policy_attachment" {
   count      = var.platform_feature_enabled ? var.feature_secrets_enabled ? 1 : 0 : 0
-  user       = aws_iam_user.truefoundry_platform_user[0].name
+  role       = aws_iam_role.truefoundry_platform_feature_iam_role[0].name
   policy_arn = aws_iam_policy.truefoundry_platform_feature_user_ssm_policy[0].arn
 }
 
-resource "aws_iam_user_policy_attachment" "truefoundry_platform_user_ecr_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_ecr_policy_attachment" {
   count      = var.platform_feature_enabled ? var.feature_docker_registry_enabled ? 1 : 0 : 0
-  user       = aws_iam_user.truefoundry_platform_user[0].name
+  role       = aws_iam_role.truefoundry_platform_feature_iam_role[0].name
   policy_arn = aws_iam_policy.truefoundry_platform_feature_user_ecr_policy[0].arn
 }

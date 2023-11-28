@@ -4,7 +4,7 @@ module "truefoundry_bucket" {
   version = "3.15.0"
 
   bucket        = var.blob_storage_enable_override ? var.blob_storage_override_name : null
-  bucket_prefix = var.blob_storage_enable_override ? null : trimsuffix(substr(local.truefoundry_unique_name, 0, 37), "-")
+  bucket_prefix = var.blob_storage_enable_override ? null : trimsuffix(substr(local.bucket_name, 0, 37), "-")
 
   force_destroy = var.blob_storage_force_destroy
 

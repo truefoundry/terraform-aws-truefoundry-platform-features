@@ -78,44 +78,44 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_cloud_integration_p
   count = var.platform_feature_enabled ? var.feature_cloud_integration_enabled ? 1 : 0 : 0
   statement {
     effect = "Allow"
-    actions =[
-				"eks:ListNodegroups",
-				"eks:DescribeFargateProfile",
-				"eks:ListTagsForResource",
-				"eks:DescribeInsight",
-				"eks:ListAddons",
-				"eks:DescribeAddon",
-				"eks:DescribePodIdentityAssociation",
-				"eks:ListInsights",
-				"eks:ListPodIdentityAssociations",
-				"eks:ListFargateProfiles",
-				"eks:DescribeNodegroup",
-				"eks:ListUpdates",
-				"eks:DescribeUpdate",
-				"eks:AccessKubernetesApi",
-				"eks:DescribeCluster",
-			]
+    actions = [
+      "eks:ListNodegroups",
+      "eks:DescribeFargateProfile",
+      "eks:ListTagsForResource",
+      "eks:DescribeInsight",
+      "eks:ListAddons",
+      "eks:DescribeAddon",
+      "eks:DescribePodIdentityAssociation",
+      "eks:ListInsights",
+      "eks:ListPodIdentityAssociations",
+      "eks:ListFargateProfiles",
+      "eks:DescribeNodegroup",
+      "eks:ListUpdates",
+      "eks:DescribeUpdate",
+      "eks:AccessKubernetesApi",
+      "eks:DescribeCluster",
+    ]
 
     resources = [
-				"arn:aws:eks:${var.aws_region}:${var.aws_account_id}:fargateprofile/${var.cluster_name}/*/*",
-				"arn:aws:eks:${var.aws_region}:${var.aws_account_id}:addon/${var.cluster_name}/*/*",
-				"arn:aws:eks:${var.aws_region}:${var.aws_account_id}:nodegroup/${var.cluster_name}/*/*",
-				"arn:aws:eks:${var.aws_region}:${var.aws_account_id}:podidentityassociation/${var.cluster_name}/*",
-				"arn:aws:eks:${var.aws_region}:${var.aws_account_id}:identityproviderconfig/${var.cluster_name}/*/*/*",
-				"arn:aws:eks:${var.aws_region}:${var.aws_account_id}:cluster/${var.cluster_name}"
-			]
+      "arn:aws:eks:${var.aws_region}:${var.aws_account_id}:fargateprofile/${var.cluster_name}/*/*",
+      "arn:aws:eks:${var.aws_region}:${var.aws_account_id}:addon/${var.cluster_name}/*/*",
+      "arn:aws:eks:${var.aws_region}:${var.aws_account_id}:nodegroup/${var.cluster_name}/*/*",
+      "arn:aws:eks:${var.aws_region}:${var.aws_account_id}:podidentityassociation/${var.cluster_name}/*",
+      "arn:aws:eks:${var.aws_region}:${var.aws_account_id}:identityproviderconfig/${var.cluster_name}/*/*/*",
+      "arn:aws:eks:${var.aws_region}:${var.aws_account_id}:cluster/${var.cluster_name}"
+    ]
   }
   statement {
     effect = "Allow"
     actions = [
-				"eks:DescribeAddonConfiguration",
-				"eks:ListClusters",
-				"eks:DescribeAddonVersions",
-        "ec2:DescribeRegions"
-			]
+      "eks:DescribeAddonConfiguration",
+      "eks:ListClusters",
+      "eks:DescribeAddonVersions",
+      "ec2:DescribeRegions"
+    ]
 
     resources = [
-     "*"
+      "*"
     ]
   }
 }

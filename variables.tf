@@ -115,6 +115,15 @@ variable "feature_docker_registry_enabled" {
   default     = true
 }
 
+################################################################################
+# Cloud Integration
+################################################################################
+variable "feature_cloud_integration_enabled" {
+  description = "Enable cloud integration feature in the platform"
+  type        = bool
+  default     = true
+}
+
 ##################################################################################
 ## Other variables
 ##################################################################################

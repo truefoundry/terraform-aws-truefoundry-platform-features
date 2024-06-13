@@ -74,8 +74,8 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_user_ecr_policy_doc
   }
 }
 
-data "aws_iam_policy_document" "truefoundry_platform_feature_cloud_integration_policy_document" {
-  count = var.platform_feature_enabled ? var.feature_cloud_integration_enabled ? 1 : 0 : 0
+data "aws_iam_policy_document" "truefoundry_platform_feature_cluster_integration_policy_document" {
+  count = var.platform_feature_enabled ? var.feature_cluster_integration_enabled ? 1 : 0 : 0
   statement {
     effect = "Allow"
     actions = [
@@ -146,11 +146,11 @@ resource "aws_iam_policy" "truefoundry_platform_feature_user_ecr_policy" {
 }
 
 
-resource "aws_iam_policy" "truefoundry_platform_feature_cloud_integration_policy" {
-  count       = var.platform_feature_enabled ? var.feature_cloud_integration_enabled ? 1 : 0 : 0
-  name_prefix = "${local.truefoundry_unique_name}-cloud-integration-access"
-  description = "IAM policy for TrueFoundry user for platform features cloud integration"
-  policy      = data.aws_iam_policy_document.truefoundry_platform_feature_cloud_integration_policy_document[0].json
+resource "aws_iam_policy" "truefoundry_platform_feature_cluster_integration_policy" {
+  count       = var.platform_feature_enabled ? var.feature_cluster_integration_enabled ? 1 : 0 : 0
+  name_prefix = "${local.truefoundry_unique_name}-cluster-integration-access"
+  description = "IAM policy for TrueFoundry user for platform features cluster integration"
+  policy      = data.aws_iam_policy_document.truefoundry_platform_feature_cluster_integration_policy_document[0].json
   tags        = local.tags
 }
 
@@ -197,8 +197,8 @@ resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_ecr_policy_
   policy_arn = aws_iam_policy.truefoundry_platform_feature_user_ecr_policy[0].arn
 }
 
-resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_cloud_integration_policy_attachment" {
-  count      = var.platform_feature_enabled ? var.feature_cloud_integration_enabled ? 1 : 0 : 0
+resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_cluster_integration_policy_attachment" {
+  count      = var.platform_feature_enabled ? var.feature_cluster_integration_enabled ? 1 : 0 : 0
   role       = aws_iam_role.truefoundry_platform_feature_iam_role[0].name
-  policy_arn = aws_iam_policy.truefoundry_platform_feature_cloud_integration_policy[0].arn
+  policy_arn = aws_iam_policy.truefoundry_platform_feature_cluster_integration_policy[0].arn
 }

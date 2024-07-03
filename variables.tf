@@ -119,7 +119,7 @@ variable "feature_docker_registry_enabled" {
 # Cluster Integration
 ################################################################################
 variable "feature_cluster_integration_enabled" {
-  description = "Enable cloud integration feature in the platform"
+  description = "Enable cluster integration feature in the platform"
   type        = bool
   default     = true
 }

@@ -13,7 +13,7 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_user_s3_policy_docu
   }
 }
 
-data "aws_iam_policy_document" "truefoundry_platform_feature_user_ssm_policy_document" {
+data "aws_iam_policy_document" "truefoundry_platform_feature_user_secrets_policy_document" {
   count = var.platform_feature_enabled ? var.feature_secrets_enabled ? 1 : 0 : 0
   statement {
     effect = "Allow"
@@ -27,6 +27,21 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_user_ssm_policy_doc
     ]
     resources = [
       "arn:aws:ssm:${var.aws_region}:${var.aws_account_id}:parameter/tfy-secret/*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "secretsmanager:GetSecretValue",
+      "secretsmanager:DescribeSecret",
+      "secretsmanager:CreateSecret",
+      "secretsmanager:DeleteSecret",
+      "secretsmanager:UpdateSecret",
+      "secretsmanager:ListSecrets"
+    ]
+    resources = [
+      "arn:aws:secretsmanager:${var.aws_region}:${var.aws_account_id}:secret:tfy-secret/*"
     ]
   }
 }
@@ -129,11 +144,11 @@ resource "aws_iam_policy" "truefoundry_platform_feature_user_s3_policy" {
   tags        = local.tags
 }
 
-resource "aws_iam_policy" "truefoundry_platform_feature_user_ssm_policy" {
+resource "aws_iam_policy" "truefoundry_platform_feature_user_secrets_policy" {
   count       = var.platform_feature_enabled ? var.feature_secrets_enabled ? 1 : 0 : 0
   name_prefix = "${local.truefoundry_unique_name}-ssm-access"
   description = "IAM policy for TrueFoundry user for platform features Secrets manager"
-  policy      = data.aws_iam_policy_document.truefoundry_platform_feature_user_ssm_policy_document[0].json
+  policy      = data.aws_iam_policy_document.truefoundry_platform_feature_user_secrets_policy_document[0].json
   tags        = local.tags
 }
 
@@ -185,10 +200,10 @@ resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_s3_policy_a
   policy_arn = aws_iam_policy.truefoundry_platform_feature_user_s3_policy[0].arn
 }
 
-resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_ssm_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_secrets_policy_attachment" {
   count      = var.platform_feature_enabled ? var.feature_secrets_enabled ? 1 : 0 : 0
   role       = aws_iam_role.truefoundry_platform_feature_iam_role[0].name
-  policy_arn = aws_iam_policy.truefoundry_platform_feature_user_ssm_policy[0].arn
+  policy_arn = aws_iam_policy.truefoundry_platform_feature_user_secrets_policy[0].arn
 }
 
 resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_ecr_policy_attachment" {

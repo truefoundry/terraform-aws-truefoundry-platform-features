@@ -99,12 +99,20 @@ variable "blob_storage_cors_origins" {
 ################################################################################
 # SSM
 ################################################################################
-variable "feature_secrets_enabled" {
-  description = "Enable secrets manager feature in the platform"
+variable "feature_parameter_store_enabled" {
+  description = "Enable parameter store feature in the platform"
   type        = bool
   default     = true
 }
 
+################################################################################
+# Secrets Manager
+################################################################################
+variable "feature_secrets_manager_enabled" {
+  description = "Enable secrets manager feature in the platform"
+  type        = bool
+  default     = true
+}
 
 ################################################################################
 # ECR

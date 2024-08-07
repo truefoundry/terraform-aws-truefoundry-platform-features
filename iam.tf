@@ -16,7 +16,7 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_user_s3_policy_docu
 data "aws_iam_policy_document" "truefoundry_platform_feature_user_parameter_store_policy_document" {
   count = var.platform_feature_enabled ? var.feature_parameter_store_enabled ? 1 : 0 : 0
   statement {
-    effect  = "Allow"
+    effect = "Allow"
     actions = [
       "ssm:GetParameter",
       "ssm:GetParameters",

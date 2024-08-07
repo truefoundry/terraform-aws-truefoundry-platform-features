@@ -28,16 +28,16 @@ Truefoundry AWS platform features
 | [aws_iam_policy.truefoundry_platform_feature_cluster_integration_policy](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_policy) | resource |
 | [aws_iam_policy.truefoundry_platform_feature_user_ecr_policy](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_policy) | resource |
 | [aws_iam_policy.truefoundry_platform_feature_user_s3_policy](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_policy) | resource |
-| [aws_iam_policy.truefoundry_platform_feature_user_ssm_policy](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_policy) | resource |
+| [aws_iam_policy.truefoundry_platform_feature_user_secrets_policy](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_policy) | resource |
 | [aws_iam_role.truefoundry_platform_feature_iam_role](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy_attachment.truefoundry_platform_user_cluster_integration_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.truefoundry_platform_user_ecr_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.truefoundry_platform_user_s3_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.truefoundry_platform_user_ssm_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.truefoundry_platform_user_secrets_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_policy_document.truefoundry_platform_feature_cluster_integration_policy_document](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.truefoundry_platform_feature_user_ecr_policy_document](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.truefoundry_platform_feature_user_s3_policy_document](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.truefoundry_platform_feature_user_ssm_policy_document](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.truefoundry_platform_feature_user_secrets_policy_document](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
 

@@ -21,7 +21,7 @@ output "platform_iam_role_assume_role_arns" {
 
 output "platform_iam_role_policy_arns" {
   description = "The list of ARNs of policies directly assigned to the IAM user"
-  value       = local.truefoundry_platform_user_policy_arns
+  value       = local.truefoundry_platform_policy_arns
 }
 
 ################################################################################

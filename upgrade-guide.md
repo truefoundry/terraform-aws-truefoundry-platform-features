@@ -6,6 +6,7 @@ This guide helps in migration from the old terraform modules to the new one.
 2. Update the following variables;
    - `feature_cloud_integration_enabled` to `feature_cluster_integration_enabled`
    - `feature_secrets_enabled` to `feature_parameter_store_enabled`
-3. Run `terraform migrate state` to update the state file to the new version.
-4. Run `terraform plan` to see the changes that will be applied.
-5. Run `terraform apply` to apply the changes.
+3. Run `terraform state list` to list all the resources that will be affected by the upgrade.
+4. Run `terraform state mv old_resource_name new_resource_name` to move the resources to the new name.
+5. Run `terraform plan` to see the changes that will be applied.
+6. Run `terraform apply` to apply the changes.

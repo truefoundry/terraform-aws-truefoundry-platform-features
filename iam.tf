@@ -150,7 +150,7 @@ resource "aws_iam_policy" "truefoundry_platform_feature_s3_policy" {
 
 resource "aws_iam_policy" "truefoundry_platform_feature_parameter_store_policy" {
   count       = var.platform_feature_enabled ? var.feature_parameter_store_enabled ? 1 : 0 : 0
-  name_prefix = "${local.truefoundry_unique_name}-paramet-access"
+  name_prefix = "${local.truefoundry_unique_name}-parameter-store-access"
   description = "IAM policy for TrueFoundry user for platform features Secrets manager"
   policy      = data.aws_iam_policy_document.truefoundry_platform_feature_parameter_store_policy_document[0].json
   tags        = local.tags

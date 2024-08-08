@@ -1,4 +1,4 @@
-data "aws_iam_policy_document" "truefoundry_platform_feature_user_s3_policy_document" {
+data "aws_iam_policy_document" "truefoundry_platform_feature_s3_policy_document" {
   count = var.platform_feature_enabled ? var.feature_blob_storage_enabled ? 1 : 0 : 0
   statement {
     effect = "Allow"
@@ -13,7 +13,7 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_user_s3_policy_docu
   }
 }
 
-data "aws_iam_policy_document" "truefoundry_platform_feature_user_parameter_store_policy_document" {
+data "aws_iam_policy_document" "truefoundry_platform_feature_parameter_store_policy_document" {
   count = var.platform_feature_enabled ? var.feature_parameter_store_enabled ? 1 : 0 : 0
   statement {
     effect = "Allow"
@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_user_parameter_stor
   }
 }
 
-data "aws_iam_policy_document" "truefoundry_platform_feature_user_secrets_manager_policy_document" {
+data "aws_iam_policy_document" "truefoundry_platform_feature_secrets_manager_policy_document" {
   count = var.platform_feature_enabled ? var.feature_secrets_manager_enabled ? 1 : 0 : 0
   statement {
     effect = "Allow"
@@ -41,15 +41,16 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_user_secrets_manage
       "secretsmanager:CreateSecret",
       "secretsmanager:DeleteSecret",
       "secretsmanager:UpdateSecret",
-      "secretsmanager:ListSecrets"
+      "secretsmanager:ListSecrets",
+      "secretsmanager:PutSecretValue",
     ]
     resources = [
-      "arn:aws:secretsmanager:${var.aws_region}:${var.aws_account_id}:secret:tfy-secret/*"
+      "arn:aws:secretsmanager:${var.aws_region}:${var.aws_account_id}:secret:/tfy-secret/*"
     ]
   }
 }
 
-data "aws_iam_policy_document" "truefoundry_platform_feature_user_ecr_policy_document" {
+data "aws_iam_policy_document" "truefoundry_platform_feature_ecr_policy_document" {
   count = var.platform_feature_enabled ? var.feature_docker_registry_enabled ? 1 : 0 : 0
   statement {
     effect = "Allow"
@@ -139,35 +140,35 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_cluster_integration
 }
 
 
-resource "aws_iam_policy" "truefoundry_platform_feature_user_s3_policy" {
+resource "aws_iam_policy" "truefoundry_platform_feature_s3_policy" {
   count       = var.platform_feature_enabled ? var.feature_blob_storage_enabled ? 1 : 0 : 0
   name_prefix = "${local.truefoundry_unique_name}-s3-access"
   description = "IAM policy for TrueFoundry user for platform features blob storage"
-  policy      = data.aws_iam_policy_document.truefoundry_platform_feature_user_s3_policy_document[0].json
+  policy      = data.aws_iam_policy_document.truefoundry_platform_feature_s3_policy_document[0].json
   tags        = local.tags
 }
 
-resource "aws_iam_policy" "truefoundry_platform_feature_user_parameter_store_policy" {
+resource "aws_iam_policy" "truefoundry_platform_feature_parameter_store_policy" {
   count       = var.platform_feature_enabled ? var.feature_parameter_store_enabled ? 1 : 0 : 0
-  name_prefix = "${local.truefoundry_unique_name}-ssm-access"
+  name_prefix = "${local.truefoundry_unique_name}-parameter-store-access"
   description = "IAM policy for TrueFoundry user for platform features Secrets manager"
-  policy      = data.aws_iam_policy_document.truefoundry_platform_feature_user_parameter_store_policy_document[0].json
+  policy      = data.aws_iam_policy_document.truefoundry_platform_feature_parameter_store_policy_document[0].json
   tags        = local.tags
 }
 
-resource "aws_iam_policy" "truefoundry_platform_feature_user_secrets_manager_policy" {
+resource "aws_iam_policy" "truefoundry_platform_feature_secrets_manager_policy" {
   count       = var.platform_feature_enabled ? var.feature_secrets_manager_enabled ? 1 : 0 : 0
   name_prefix = "${local.truefoundry_unique_name}-secrets-manager-access"
   description = "IAM policy for TrueFoundry user for platform features Secrets manager"
-  policy      = data.aws_iam_policy_document.truefoundry_platform_feature_user_secrets_manager_policy_document[0].json
+  policy      = data.aws_iam_policy_document.truefoundry_platform_feature_secrets_manager_policy_document[0].json
   tags        = local.tags
 }
 
-resource "aws_iam_policy" "truefoundry_platform_feature_user_ecr_policy" {
+resource "aws_iam_policy" "truefoundry_platform_feature_ecr_policy" {
   count       = var.platform_feature_enabled ? var.feature_docker_registry_enabled ? 1 : 0 : 0
   name_prefix = "${local.truefoundry_unique_name}-ecr-access"
   description = "IAM policy for TrueFoundry user for platform features docker registry"
-  policy      = data.aws_iam_policy_document.truefoundry_platform_feature_user_ecr_policy_document[0].json
+  policy      = data.aws_iam_policy_document.truefoundry_platform_feature_ecr_policy_document[0].json
   tags        = local.tags
 }
 
@@ -205,31 +206,31 @@ resource "aws_iam_role" "truefoundry_platform_feature_iam_role" {
   tags = local.tags
 }
 
-resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_s3_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "truefoundry_platform_s3_policy_attachment" {
   count      = var.platform_feature_enabled ? var.feature_blob_storage_enabled ? 1 : 0 : 0
   role       = aws_iam_role.truefoundry_platform_feature_iam_role[0].name
-  policy_arn = aws_iam_policy.truefoundry_platform_feature_user_s3_policy[0].arn
+  policy_arn = aws_iam_policy.truefoundry_platform_feature_s3_policy[0].arn
 }
 
-resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_parameter_store_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "truefoundry_platform_parameter_store_policy_attachment" {
   count      = var.platform_feature_enabled ? var.feature_parameter_store_enabled ? 1 : 0 : 0
   role       = aws_iam_role.truefoundry_platform_feature_iam_role[0].name
-  policy_arn = aws_iam_policy.truefoundry_platform_feature_user_parameter_store_policy[0].arn
+  policy_arn = aws_iam_policy.truefoundry_platform_feature_parameter_store_policy[0].arn
 }
 
-resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_secrets_manager_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "truefoundry_platform_secrets_manager_policy_attachment" {
   count      = var.platform_feature_enabled ? var.feature_secrets_manager_enabled ? 1 : 0 : 0
   role       = aws_iam_role.truefoundry_platform_feature_iam_role[0].name
-  policy_arn = aws_iam_policy.truefoundry_platform_feature_user_secrets_manager_policy[0].arn
+  policy_arn = aws_iam_policy.truefoundry_platform_feature_secrets_manager_policy[0].arn
 }
 
-resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_ecr_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "truefoundry_platform_ecr_policy_attachment" {
   count      = var.platform_feature_enabled ? var.feature_docker_registry_enabled ? 1 : 0 : 0
   role       = aws_iam_role.truefoundry_platform_feature_iam_role[0].name
-  policy_arn = aws_iam_policy.truefoundry_platform_feature_user_ecr_policy[0].arn
+  policy_arn = aws_iam_policy.truefoundry_platform_feature_ecr_policy[0].arn
 }
 
-resource "aws_iam_role_policy_attachment" "truefoundry_platform_user_cluster_integration_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "truefoundry_platform_cluster_integration_policy_attachment" {
   count      = var.platform_feature_enabled ? var.feature_cluster_integration_enabled ? 1 : 0 : 0
   role       = aws_iam_role.truefoundry_platform_feature_iam_role[0].name
   policy_arn = aws_iam_policy.truefoundry_platform_feature_cluster_integration_policy[0].arn

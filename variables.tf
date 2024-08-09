@@ -111,7 +111,7 @@ variable "feature_parameter_store_enabled" {
 variable "feature_secrets_manager_enabled" {
   description = "Enable secrets manager feature in the platform"
   type        = bool
-  default     = true
+  default     = false
 }
 
 ################################################################################

@@ -52,6 +52,22 @@ variable "platform_role_override_name" {
 }
 
 ################################################################################
+# IAM user
+################################################################################
+
+variable "platform_user_force_destroy" {
+  description = "Enable force destroy of the user"
+  type        = bool
+  default     = true
+}
+
+variable "platform_feature_user_enabled" {
+  description = "Enable creation of a platform feature user"
+  type        = bool
+  default     = false
+}
+
+################################################################################
 # Buckets
 ################################################################################
 

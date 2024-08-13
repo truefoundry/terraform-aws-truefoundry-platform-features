@@ -241,7 +241,7 @@ resource "aws_iam_role_policy_attachment" "truefoundry_platform_cluster_integrat
 # IAM user
 ################################################################################
 resource "aws_iam_user" "truefoundry_platform_user" {
-  count = var.platform_feature_enabled ? 1 : 0
+  count = var.platform_feature_enabled && var.platform_feature_user_enabled ? 1 : 0
 
   name          = "${local.truefoundry_unique_name}-user"
   path          = "/truefoundry/"
@@ -251,7 +251,7 @@ resource "aws_iam_user" "truefoundry_platform_user" {
 
 
 resource "aws_iam_access_key" "truefoundry_platform_user_keys" {
-  count = var.platform_feature_enabled ? 1 : 0
+  count = var.platform_feature_enabled && var.platform_feature_user_enabled ? 1 : 0
 
   user = aws_iam_user.truefoundry_platform_user[0].name
 }

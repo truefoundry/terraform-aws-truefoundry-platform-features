@@ -61,6 +61,12 @@ variable "platform_user_enabled" {
   default     = false
 }
 
+variable "platform_user_override_enabled" {
+  description = "Enable overriding the platform user name. You need to pass platform_user_override_name to pass the user name"
+  type        = bool
+  default     = false
+}
+
 variable "platform_user_override_name" {
   description = "Username to override the default platform feature user"
   type        = string

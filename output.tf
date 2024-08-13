@@ -26,18 +26,18 @@ output "platform_iam_role_policy_arns" {
 
 output "platform_user_access_key" {
   description = "The user access key ID"
-  value       = var.platform_feature_enabled && var.platform_feature_user_enabled ? aws_iam_access_key.truefoundry_platform_user_keys[0].id : ""
+  value       = var.platform_feature_enabled && var.platform_user_enabled ? aws_iam_access_key.truefoundry_platform_user_keys[0].id : ""
 }
 
 output "platform_user_secret_key" {
   description = "The user secret key"
-  value       = var.platform_feature_enabled && var.platform_feature_user_enabled ? aws_iam_access_key.truefoundry_platform_user_keys[0].secret : ""
+  value       = var.platform_feature_enabled && var.platform_user_enabled ? aws_iam_access_key.truefoundry_platform_user_keys[0].secret : ""
   sensitive   = true
 }
 
 output "platform_user_arn" {
   description = "The user IAM resource arn"
-  value       = var.platform_feature_enabled && var.platform_feature_user_enabled ? aws_iam_user.truefoundry_platform_user[0].arn : ""
+  value       = var.platform_feature_enabled && var.platform_user_enabled ? aws_iam_user.truefoundry_platform_user[0].arn : ""
 }
 
 ################################################################################

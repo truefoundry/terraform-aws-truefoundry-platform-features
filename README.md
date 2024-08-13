@@ -72,6 +72,7 @@ Truefoundry AWS platform features
 | <a name="input_platform_role_override_name"></a> [platform\_role\_override\_name](#input\_platform\_role\_override\_name) | Platform IAM role name which will have access to S3 bucket, SSM and ECR | `string` | `""` | no |
 | <a name="input_platform_user_enabled"></a> [platform\_user\_enabled](#input\_platform\_user\_enabled) | Enable creation of a platform feature user | `bool` | `false` | no |
 | <a name="input_platform_user_force_destroy"></a> [platform\_user\_force\_destroy](#input\_platform\_user\_force\_destroy) | Enable force destroy of the user | `bool` | `true` | no |
+| <a name="input_platform_user_override_enabled"></a> [platform\_user\_override\_enabled](#input\_platform\_user\_override\_enabled) | Enable overriding the platform user name. You need to pass platform\_user\_override\_name to pass the user name | `bool` | `false` | no |
 | <a name="input_platform_user_override_name"></a> [platform\_user\_override\_name](#input\_platform\_user\_override\_name) | Username to override the default platform feature user | `string` | `""` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to add to all resources | `map(string)` | `{}` | no |
 

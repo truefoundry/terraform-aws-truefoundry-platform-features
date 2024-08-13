@@ -55,18 +55,23 @@ variable "platform_role_override_name" {
 # IAM user
 ################################################################################
 
-variable "platform_user_force_destroy" {
-  description = "Enable force destroy of the user"
-  type        = bool
-  default     = true
-}
-
-variable "platform_feature_user_enabled" {
+variable "platform_user_enabled" {
   description = "Enable creation of a platform feature user"
   type        = bool
   default     = false
 }
 
+variable "platform_user_override_name" {
+  description = "Username to override the default platform feature user"
+  type        = string
+  default     = ""
+}
+
+variable "platform_user_force_destroy" {
+  description = "Enable force destroy of the user"
+  type        = bool
+  default     = true
+}
 ################################################################################
 # Buckets
 ################################################################################
@@ -113,7 +118,7 @@ variable "blob_storage_cors_origins" {
   default     = ["*"]
 }
 ################################################################################
-# SSM
+# Parameter Store
 ################################################################################
 variable "feature_parameter_store_enabled" {
   description = "Enable parameter store feature in the platform"

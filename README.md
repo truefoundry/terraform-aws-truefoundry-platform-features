@@ -39,9 +39,9 @@ Truefoundry AWS platform features
 | [aws_iam_role_policy_attachment.truefoundry_platform_secrets_manager_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_user.truefoundry_platform_user](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user) | resource |
 | [aws_iam_user_policy_attachment.truefoundry_platform_user_ecr_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
+| [aws_iam_user_policy_attachment.truefoundry_platform_user_parameter_store_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
 | [aws_iam_user_policy_attachment.truefoundry_platform_user_s3_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
 | [aws_iam_user_policy_attachment.truefoundry_platform_user_secrets_manager_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
-| [aws_iam_user_policy_attachment.truefoundry_platform_user_ssm_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
 | [aws_iam_policy_document.truefoundry_platform_feature_cluster_integration_policy_document](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.truefoundry_platform_feature_ecr_policy_document](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.truefoundry_platform_feature_parameter_store_policy_document](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/data-sources/iam_policy_document) | data source |
@@ -68,10 +68,11 @@ Truefoundry AWS platform features
 | <a name="input_feature_parameter_store_enabled"></a> [feature\_parameter\_store\_enabled](#input\_feature\_parameter\_store\_enabled) | Enable parameter store feature in the platform | `bool` | `true` | no |
 | <a name="input_feature_secrets_manager_enabled"></a> [feature\_secrets\_manager\_enabled](#input\_feature\_secrets\_manager\_enabled) | Enable secrets manager feature in the platform | `bool` | `false` | no |
 | <a name="input_platform_feature_enabled"></a> [platform\_feature\_enabled](#input\_platform\_feature\_enabled) | Enable platform features like docker registry, secrets manager and blob storage | `bool` | `true` | no |
-| <a name="input_platform_feature_user_enabled"></a> [platform\_feature\_user\_enabled](#input\_platform\_feature\_user\_enabled) | Enable creation of a platform feature user | `bool` | `false` | no |
 | <a name="input_platform_role_enable_override"></a> [platform\_role\_enable\_override](#input\_platform\_role\_enable\_override) | Enable overriding the platform role name. You need to pass s3\_override\_name to pass the bucket name | `bool` | `false` | no |
 | <a name="input_platform_role_override_name"></a> [platform\_role\_override\_name](#input\_platform\_role\_override\_name) | Platform IAM role name which will have access to S3 bucket, SSM and ECR | `string` | `""` | no |
+| <a name="input_platform_user_enabled"></a> [platform\_user\_enabled](#input\_platform\_user\_enabled) | Enable creation of a platform feature user | `bool` | `false` | no |
 | <a name="input_platform_user_force_destroy"></a> [platform\_user\_force\_destroy](#input\_platform\_user\_force\_destroy) | Enable force destroy of the user | `bool` | `true` | no |
+| <a name="input_platform_user_override_name"></a> [platform\_user\_override\_name](#input\_platform\_user\_override\_name) | Username to override the default platform feature user | `string` | `""` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to add to all resources | `map(string)` | `{}` | no |
 
 ## Outputs

@@ -243,7 +243,7 @@ resource "aws_iam_role_policy_attachment" "truefoundry_platform_cluster_integrat
 resource "aws_iam_user" "truefoundry_platform_user" {
   count = var.platform_feature_enabled && var.platform_user_enabled ? 1 : 0
 
-  name          = var.platform_user_override_enabled ? var.platform_user_override_name : "${local.truefoundry_unique_name}-user"
+  name          = var.platform_user_name_override_enabled ? var.platform_user_override_name : "${local.truefoundry_unique_name}-user"
   path          = "/truefoundry/"
   force_destroy = var.platform_user_force_destroy
   tags          = local.tags

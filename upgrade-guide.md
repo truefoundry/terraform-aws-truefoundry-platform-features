@@ -7,14 +7,14 @@ This guide helps in migration from the old terraform modules to the new one.
    - `feature_secrets_enabled` to `feature_parameter_store_enabled`
 3. Run `terraform state mv old_resource_name new_resource_name` to move the resources to the new name. Run the following commands to update state;
 ```bash
-   terraform state mv module.<module-name>.aws_iam_role_policy_attachment.truefoundry_platform_user_ecr_policy_attachment module.<module-name>.aws_iam_role_policy_attachment.truefoundry_platform_ecr_policy_attachment
-   terraform state mv module.<module-name>.aws_iam_role_policy_attachment.truefoundry_platform_user_ssm_policy_attachment module.<module-name>.aws_iam_role_policy_attachment.truefoundry_platform_parameter_store_policy_attachment
-   terraform state mv module.<module-name>.aws_iam_role_policy_attachment.truefoundry_platform_user_cluster_integration_policy_attachment module.<module-name>.aws_iam_role_policy_attachment.truefoundry_platform_cluster_integration_policy_attachment
-   terraform state mv module.<module-name>.aws_iam_role_policy_attachment.truefoundry_platform_user_s3_policy_attachment module.<module-name>.aws_iam_role_policy_attachment.truefoundry_platform_s3_policy_attachment
+   terraform state mv aws_iam_role_policy_attachment.truefoundry_platform_user_ecr_policy_attachment aws_iam_role_policy_attachment.truefoundry_platform_ecr_policy_attachment
+   terraform state mv aws_iam_role_policy_attachment.truefoundry_platform_user_ssm_policy_attachment aws_iam_role_policy_attachment.truefoundry_platform_parameter_store_policy_attachment
+   terraform state mv aws_iam_role_policy_attachment.truefoundry_platform_user_cluster_integration_policy_attachment aws_iam_role_policy_attachment.truefoundry_platform_cluster_integration_policy_attachment
+   terraform state mv aws_iam_role_policy_attachment.truefoundry_platform_user_s3_policy_attachment aws_iam_role_policy_attachment.truefoundry_platform_s3_policy_attachment
    
-   terraform state mv module.<module-name>.aws_iam_policy.truefoundry_platform_feature_user_ecr_policy module.<module-name>.aws_iam_policy.truefoundry_platform_feature_ecr_policy
-   terraform state mv module.<module-name>.aws_iam_policy.truefoundry_platform_feature_user_ssm_policy module.<module-name>.aws_iam_policy.truefoundry_platform_feature_parameter_store_policy
-   terraform state mv module.<module-name>.aws_iam_policy.truefoundry_platform_feature_user_s3_policy module.<module-name>.aws_iam_policy.truefoundry_platform_feature_s3_policy
+   terraform state mv aws_iam_policy.truefoundry_platform_feature_user_ecr_policy aws_iam_policy.truefoundry_platform_feature_ecr_policy
+   terraform state mv aws_iam_policy.truefoundry_platform_feature_user_ssm_policy aws_iam_policy.truefoundry_platform_feature_parameter_store_policy
+   terraform state mv aws_iam_policy.truefoundry_platform_feature_user_s3_policy aws_iam_policy.truefoundry_platform_feature_s3_policy
 ```
 4. Run `terraform plan` to see the changes that will be applied. 
 5. Run `terraform apply` to apply the changes.
@@ -26,8 +26,8 @@ This guide helps in migration from the old terraform modules to the new one.
    - `feature_cloud_integration_enabled` to `feature_cluster_integration_enabled`
 3. Run `terraform state mv old_resource_name new_resource_name` to move the resources to the new name. Run the following commands to update state;
 ```bash
-  terraform state mv module.<module-name>.aws_iam_policy.truefoundry_platform_feature_cloud_integration_policy module.<module-name>.aws_iam_policy.truefoundry_platform_feature_cluster_integration_policy
-  terraform state mv module.<module-name>.aws_iam_role_policy_attachment.truefoundry_platform_user_cloud_integration_policy_attachment module.<module-name>.aws_iam_role_policy_attachment.truefoundry_platform_user_cluster_integration_policy_attachment
+  terraform state mv aws_iam_policy.truefoundry_platform_feature_cloud_integration_policy aws_iam_policy.truefoundry_platform_feature_cluster_integration_policy
+  terraform state mv aws_iam_role_policy_attachment.truefoundry_platform_user_cloud_integration_policy_attachment aws_iam_role_policy_attachment.truefoundry_platform_user_cluster_integration_policy_attachment
 ```
 4. Run `terraform plan` to see the changes that will be applied.
 5. Run `terraform apply` to apply the changes.

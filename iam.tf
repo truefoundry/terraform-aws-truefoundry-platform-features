@@ -235,3 +235,47 @@ resource "aws_iam_role_policy_attachment" "truefoundry_platform_cluster_integrat
   role       = aws_iam_role.truefoundry_platform_feature_iam_role[0].name
   policy_arn = aws_iam_policy.truefoundry_platform_feature_cluster_integration_policy[0].arn
 }
+
+
+################################################################################
+# IAM user
+################################################################################
+resource "aws_iam_user" "truefoundry_platform_user" {
+  count = var.platform_feature_enabled && var.platform_user_enabled ? 1 : 0
+
+  name          = var.platform_user_name_override_enabled ? var.platform_user_override_name : "${local.truefoundry_unique_name}-user"
+  path          = "/truefoundry/"
+  force_destroy = var.platform_user_force_destroy
+  tags          = local.tags
+}
+
+
+resource "aws_iam_access_key" "truefoundry_platform_user_keys" {
+  count = var.platform_feature_enabled && var.platform_user_enabled ? 1 : 0
+
+  user = aws_iam_user.truefoundry_platform_user[0].name
+}
+
+resource "aws_iam_user_policy_attachment" "truefoundry_platform_user_s3_policy_attachment" {
+  count      = var.platform_feature_enabled ? (var.feature_blob_storage_enabled && var.platform_user_enabled) ? 1 : 0 : 0
+  user       = aws_iam_user.truefoundry_platform_user[0].name
+  policy_arn = aws_iam_policy.truefoundry_platform_feature_s3_policy[0].arn
+}
+
+resource "aws_iam_user_policy_attachment" "truefoundry_platform_user_parameter_store_policy_attachment" {
+  count      = var.platform_feature_enabled ? (var.feature_parameter_store_enabled && var.platform_user_enabled) ? 1 : 0 : 0
+  user       = aws_iam_user.truefoundry_platform_user[0].name
+  policy_arn = aws_iam_policy.truefoundry_platform_feature_parameter_store_policy[0].arn
+}
+
+resource "aws_iam_user_policy_attachment" "truefoundry_platform_user_secrets_manager_policy_attachment" {
+  count      = var.platform_feature_enabled ? (var.feature_secrets_manager_enabled && var.platform_user_enabled) ? 1 : 0 : 0
+  user       = aws_iam_user.truefoundry_platform_user[0].name
+  policy_arn = aws_iam_policy.truefoundry_platform_feature_secrets_manager_policy[0].arn
+}
+
+resource "aws_iam_user_policy_attachment" "truefoundry_platform_user_ecr_policy_attachment" {
+  count      = var.platform_feature_enabled ? (var.feature_docker_registry_enabled && var.platform_user_enabled) ? 1 : 0 : 0
+  user       = aws_iam_user.truefoundry_platform_user[0].name
+  policy_arn = aws_iam_policy.truefoundry_platform_feature_ecr_policy[0].arn
+}

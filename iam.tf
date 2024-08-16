@@ -279,7 +279,7 @@ resource "aws_iam_user_policy_attachment" "truefoundry_platform_user_ecr_policy_
   policy_arn = aws_iam_policy.truefoundry_platform_feature_ecr_policy[0].arn
 }
 
-resource "aws_iam_user_policy_attachment" "truefoundry_platform_user_cloud_integration_policy_attachment" {
+resource "aws_iam_user_policy_attachment" "truefoundry_platform_user_cluster_integration_policy_attachment" {
   count      = var.platform_feature_enabled ? (var.feature_cluster_integration_enabled && var.platform_user_enabled) ? 1 : 0 : 0
   user       = aws_iam_user.truefoundry_platform_user[0].name
   policy_arn = aws_iam_policy.truefoundry_platform_feature_cluster_integration_policy[0].arn

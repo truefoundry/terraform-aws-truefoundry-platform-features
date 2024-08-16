@@ -38,7 +38,7 @@ Truefoundry AWS platform features
 | [aws_iam_role_policy_attachment.truefoundry_platform_s3_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.truefoundry_platform_secrets_manager_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_user.truefoundry_platform_user](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user) | resource |
-| [aws_iam_user_policy_attachment.truefoundry_platform_user_cloud_integration_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
+| [aws_iam_user_policy_attachment.truefoundry_platform_user_cluster_integration_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
 | [aws_iam_user_policy_attachment.truefoundry_platform_user_ecr_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
 | [aws_iam_user_policy_attachment.truefoundry_platform_user_parameter_store_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
 | [aws_iam_user_policy_attachment.truefoundry_platform_user_s3_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |

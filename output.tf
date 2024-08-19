@@ -24,6 +24,11 @@ output "platform_iam_role_policy_arns" {
   value       = local.truefoundry_platform_policy_arns
 }
 
+output "platform_user_enabled" {
+  description = "The user is enabled"
+  value       = var.platform_feature_enabled && var.platform_user_enabled
+}
+
 output "platform_user_access_key" {
   description = "The user access key ID"
   value       = var.platform_feature_enabled && var.platform_user_enabled ? aws_iam_access_key.truefoundry_platform_user_keys[0].id : ""

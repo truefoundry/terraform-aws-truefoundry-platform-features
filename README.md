@@ -90,5 +90,6 @@ Truefoundry AWS platform features
 | <a name="output_platform_user_bucket_arn"></a> [platform\_user\_bucket\_arn](#output\_platform\_user\_bucket\_arn) | The bucket's arn |
 | <a name="output_platform_user_bucket_name"></a> [platform\_user\_bucket\_name](#output\_platform\_user\_bucket\_name) | The bucket's ID/name |
 | <a name="output_platform_user_ecr_url"></a> [platform\_user\_ecr\_url](#output\_platform\_user\_ecr\_url) | The ECR url to connect |
+| <a name="output_platform_user_enabled"></a> [platform\_user\_enabled](#output\_platform\_user\_enabled) | The user is enabled |
 | <a name="output_platform_user_secret_key"></a> [platform\_user\_secret\_key](#output\_platform\_user\_secret\_key) | The user secret key |
 <!-- END_TF_DOCS -->

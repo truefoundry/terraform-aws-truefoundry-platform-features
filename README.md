@@ -7,13 +7,13 @@ Truefoundry AWS platform features
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.4 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.14.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.57.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.14.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.57.0 |
 
 ## Modules
 
@@ -25,29 +25,29 @@ Truefoundry AWS platform features
 
 | Name | Type |
 |------|------|
-| [aws_iam_access_key.truefoundry_platform_user_keys](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_access_key) | resource |
-| [aws_iam_policy.truefoundry_platform_feature_cluster_integration_policy](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_policy) | resource |
-| [aws_iam_policy.truefoundry_platform_feature_ecr_policy](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_policy) | resource |
-| [aws_iam_policy.truefoundry_platform_feature_parameter_store_policy](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_policy) | resource |
-| [aws_iam_policy.truefoundry_platform_feature_s3_policy](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_policy) | resource |
-| [aws_iam_policy.truefoundry_platform_feature_secrets_manager_policy](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_policy) | resource |
-| [aws_iam_role.truefoundry_platform_feature_iam_role](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy_attachment.truefoundry_platform_cluster_integration_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.truefoundry_platform_ecr_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.truefoundry_platform_parameter_store_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.truefoundry_platform_s3_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_role_policy_attachment.truefoundry_platform_secrets_manager_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_iam_user.truefoundry_platform_user](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user) | resource |
-| [aws_iam_user_policy_attachment.truefoundry_platform_user_cluster_integration_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
-| [aws_iam_user_policy_attachment.truefoundry_platform_user_ecr_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
-| [aws_iam_user_policy_attachment.truefoundry_platform_user_parameter_store_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
-| [aws_iam_user_policy_attachment.truefoundry_platform_user_s3_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
-| [aws_iam_user_policy_attachment.truefoundry_platform_user_secrets_manager_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/resources/iam_user_policy_attachment) | resource |
-| [aws_iam_policy_document.truefoundry_platform_feature_cluster_integration_policy_document](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.truefoundry_platform_feature_ecr_policy_document](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.truefoundry_platform_feature_parameter_store_policy_document](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.truefoundry_platform_feature_s3_policy_document](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.truefoundry_platform_feature_secrets_manager_policy_document](https://registry.terraform.io/providers/hashicorp/aws/5.14.0/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_access_key.truefoundry_platform_user_keys](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key) | resource |
+| [aws_iam_policy.truefoundry_platform_feature_cluster_integration_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_policy.truefoundry_platform_feature_ecr_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_policy.truefoundry_platform_feature_parameter_store_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_policy.truefoundry_platform_feature_s3_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_policy.truefoundry_platform_feature_secrets_manager_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_role.truefoundry_platform_feature_iam_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy_attachment.truefoundry_platform_cluster_integration_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.truefoundry_platform_ecr_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.truefoundry_platform_parameter_store_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.truefoundry_platform_s3_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_role_policy_attachment.truefoundry_platform_secrets_manager_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_iam_user.truefoundry_platform_user](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user) | resource |
+| [aws_iam_user_policy_attachment.truefoundry_platform_user_cluster_integration_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
+| [aws_iam_user_policy_attachment.truefoundry_platform_user_ecr_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
+| [aws_iam_user_policy_attachment.truefoundry_platform_user_parameter_store_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
+| [aws_iam_user_policy_attachment.truefoundry_platform_user_s3_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
+| [aws_iam_user_policy_attachment.truefoundry_platform_user_secrets_manager_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
+| [aws_iam_policy_document.truefoundry_platform_feature_cluster_integration_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.truefoundry_platform_feature_ecr_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.truefoundry_platform_feature_parameter_store_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.truefoundry_platform_feature_s3_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.truefoundry_platform_feature_secrets_manager_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
 
@@ -55,14 +55,14 @@ Truefoundry AWS platform features
 |------|-------------|------|---------|:--------:|
 | <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | AWS account id | `string` | n/a | yes |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region | `string` | n/a | yes |
-| <a name="input_blob_storage_cors_origins"></a> [blob\_storage\_cors\_origins](#input\_blob\_storage\_cors\_origins) | List of CORS origins for Mlfoundry bucket | `list(string)` | <pre>[<br>  "*"<br>]</pre> | no |
+| <a name="input_blob_storage_cors_origins"></a> [blob\_storage\_cors\_origins](#input\_blob\_storage\_cors\_origins) | List of CORS origins for Mlfoundry bucket | `list(string)` | <pre>[<br/>  "*"<br/>]</pre> | no |
 | <a name="input_blob_storage_enable_override"></a> [blob\_storage\_enable\_override](#input\_blob\_storage\_enable\_override) | Enable overriding the name of s3 bucket. This will only be used if feature\_blob\_storage\_enabled is enabled. You need to pass s3\_override\_name to pass the bucket name | `bool` | `false` | no |
 | <a name="input_blob_storage_encryption_algorithm"></a> [blob\_storage\_encryption\_algorithm](#input\_blob\_storage\_encryption\_algorithm) | Algorithm used for encrypting the default bucket. | `string` | `"AES256"` | no |
 | <a name="input_blob_storage_encryption_key_arn"></a> [blob\_storage\_encryption\_key\_arn](#input\_blob\_storage\_encryption\_key\_arn) | ARN of the key used to encrypt the bucket. Only needed if you set aws:kms as encryption algorithm. | `string` | `null` | no |
 | <a name="input_blob_storage_force_destroy"></a> [blob\_storage\_force\_destroy](#input\_blob\_storage\_force\_destroy) | Force destroy for mlfoundry s3 bucket | `bool` | `true` | no |
 | <a name="input_blob_storage_override_name"></a> [blob\_storage\_override\_name](#input\_blob\_storage\_override\_name) | S3 bucket name. Only used if s3\_enable\_override is enabled | `string` | `""` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the EKS cluster | `string` | n/a | yes |
-| <a name="input_control_plane_roles"></a> [control\_plane\_roles](#input\_control\_plane\_roles) | Control plane roles that can assume your platform role | `list(string)` | <pre>[<br>  "arn:aws:iam::416964291864:role/tfy-ctl-euwe1-production-truefoundry-deps"<br>]</pre> | no |
+| <a name="input_control_plane_roles"></a> [control\_plane\_roles](#input\_control\_plane\_roles) | Control plane roles that can assume your platform role | `list(string)` | <pre>[<br/>  "arn:aws:iam::416964291864:role/tfy-ctl-euwe1-production-truefoundry-deps"<br/>]</pre> | no |
 | <a name="input_feature_blob_storage_enabled"></a> [feature\_blob\_storage\_enabled](#input\_feature\_blob\_storage\_enabled) | Enable blob storage feature in the platform | `bool` | `true` | no |
 | <a name="input_feature_cluster_integration_enabled"></a> [feature\_cluster\_integration\_enabled](#input\_feature\_cluster\_integration\_enabled) | Enable cluster integration feature in the platform | `bool` | `true` | no |
 | <a name="input_feature_docker_registry_enabled"></a> [feature\_docker\_registry\_enabled](#input\_feature\_docker\_registry\_enabled) | Enable docker registry feature in the platform | `bool` | `true` | no |

@@ -72,15 +72,15 @@ output "platform_user_ecr_url" {
 ################################################################################
 output "tenant_name" {
   description = "The tenant name"
-  value = var.aws_cluster_integration_enabled ? module.integrations.tenant_name : ""
+  value       = var.aws_cluster_integration_enabled ? module.integrations.tenant_name : ""
 }
 
 output "cluster_token" {
   description = "The cluster token"
-  value = var.aws_cluster_integration_enabled ? module.integrations.cluster_token : ""
+  value       = var.aws_cluster_integration_enabled ? module.integrations.cluster_token : ""
 }
 
 output "cluster_id" {
   description = "The cluster id"
-  value = var.aws_cluster_integration_enabled ? module.integrations.cluster_id : ""
+  value       = var.aws_cluster_integration_enabled ? module.integrations.cluster_id : ""
 }

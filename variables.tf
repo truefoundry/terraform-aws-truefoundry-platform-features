@@ -14,10 +14,81 @@ variable "aws_region" {
   type        = string
 }
 
+variable "aws_access_key_id" {
+  description = "AWS access key id"
+  type        = string
+}
+
+variable "aws_secret_access_key" {
+  description = "AWS secret access key"
+  type        = string
+}
+
+variable "aws_role_arn" {
+  description = "AWS role arn"
+  type        = string
+}
+
+variable "aws_s3_enabled" {
+  description = "Enable S3 bucket creation"
+  type        = bool
+  default     = false
+}
+
+variable "aws_s3_bucket_name" {
+  description = "Name of the S3 bucket"
+  type        = string
+}
+
+variable "aws_ecr_enabled" {
+  description = "Enable ECR repository creation"
+  type        = bool
+  default     = false
+}
+
+variable "aws_parameter_store_enabled" {
+  description = "Enable parameter store creation"
+  type        = bool
+  default     = false
+}
+
+variable "aws_secrets_manager_enabled" {
+  description = "Enable secrets manager creation"
+  type        = bool
+  default     = false
+}
+
+variable "aws_service_account_enabled" {
+  description = "Enable service account creation"
+  type        = bool
+  default     = false
+}
+
+variable "aws_cluster_integration_enabled" {
+  description = "Enable cluster integration creation"
+  type        = bool
+  default     = false
+}
+
 variable "platform_feature_enabled" {
   description = "Enable platform features like docker registry, secrets manager and blob storage"
   type        = bool
   default     = true
+}
+
+variable "tfy_api_key" {
+  type        = string
+  description = "API key for authentication"
+  sensitive   = true
+}
+################################################################################
+# Integration
+################################################################################
+
+variable "trigger_helm_update" {
+  description = "Trigger helm update"
+  type        = bool
+  default     = false
 }
 
 ################################################################################
@@ -26,6 +97,11 @@ variable "platform_feature_enabled" {
 
 variable "cluster_name" {
   description = "Name of the EKS cluster"
+  type        = string
+}
+
+variable "control_plane_url" {
+  description = "Control plane URL"
   type        = string
 }
 

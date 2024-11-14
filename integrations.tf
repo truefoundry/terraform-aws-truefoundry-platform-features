@@ -1,5 +1,5 @@
 module "integrations" {
-  source = "git::https://github.com/truefoundry/terraform-truefoundry-integrations.git?ref=main"
+  source = "git::https://github.com/truefoundry/terraform-truefoundry-integrations.git?ref=v0.1.0-rc.3"
 
   cluster_type      = "aws-eks"
   cluster_name      = var.cluster_name

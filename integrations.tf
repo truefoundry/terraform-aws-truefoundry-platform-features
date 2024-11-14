@@ -1,6 +1,8 @@
 module "integrations" {
   source = "git::https://github.com/truefoundry/terraform-truefoundry-integrations.git?ref=v0.1.0-rc.3"
 
+  count = var.aws_cluster_integration_enabled ? 1 : 0
+
   cluster_type      = "aws-eks"
   cluster_name      = var.cluster_name
   control_plane_url = var.control_plane_url

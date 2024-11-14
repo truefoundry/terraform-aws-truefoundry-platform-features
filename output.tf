@@ -65,3 +65,22 @@ output "platform_user_ecr_url" {
   description = "The ECR url to connect"
   value       = var.feature_docker_registry_enabled ? "${var.aws_account_id}.dkr.ecr.${var.aws_region}.amazonaws.com" : ""
 }
+
+
+################################################################################
+# Integration details
+################################################################################
+output "tenant_name" {
+  description = "The tenant name"
+  value = var.aws_cluster_integration_enabled ? module.integrations.tenant_name : ""
+}
+
+output "cluster_token" {
+  description = "The cluster token"
+  value = var.aws_cluster_integration_enabled ? module.integrations.cluster_token : ""
+}
+
+output "cluster_id" {
+  description = "The cluster id"
+  value = var.aws_cluster_integration_enabled ? module.integrations.cluster_id : ""
+}

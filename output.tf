@@ -1,28 +1,31 @@
 # From https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/outputs.tf
 
 ################################################################################
-# User details
+# Iam Role details
 ################################################################################
-
-output "platform_iam_role_name" {
-  description = "Then name of the IAM role"
-  value       = var.platform_feature_enabled ? aws_iam_role.truefoundry_platform_feature_iam_role[0].name : ""
-}
-
 output "platform_iam_role_arn" {
-  description = "The IAM role resource arn"
+  description = "The platform IAM role arn"
   value       = var.platform_feature_enabled ? aws_iam_role.truefoundry_platform_feature_iam_role[0].arn : ""
 }
 
 output "platform_iam_role_assume_role_arns" {
-  description = "The IAM role arns which has been assume by platform_iam_role"
+  description = "The roles arns that can assume the platform IAM role"
   value       = var.platform_feature_enabled ? var.control_plane_roles : []
 }
 
 output "platform_iam_role_policy_arns" {
-  description = "The list of ARNs of policies directly assigned to the IAM user"
+  description = "The platform IAM role policy arns"
   value       = local.truefoundry_platform_policy_arns
 }
+
+output "platform_iam_role_enabled" {
+  description = "The platform IAM role is enabled"
+  value       = var.platform_feature_enabled
+}
+
+################################################################################
+# User details
+################################################################################
 
 output "platform_user_enabled" {
   description = "The user is enabled"
@@ -48,20 +51,54 @@ output "platform_user_arn" {
 ################################################################################
 # Bucket details
 ################################################################################
-output "platform_user_bucket_name" {
+output "platform_bucket_name" {
   description = "The bucket's ID/name"
   value       = var.feature_blob_storage_enabled ? module.truefoundry_bucket[0].s3_bucket_id : ""
 }
 
-output "platform_user_bucket_arn" {
+output "platform_bucket_arn" {
   description = "The bucket's arn"
   value       = var.feature_blob_storage_enabled ? module.truefoundry_bucket[0].s3_bucket_arn : ""
+}
+
+output "platform_bucket_enabled" {
+  description = "Platform bucket is enabled"
+  value = var.platform_feature_enabled && var.feature_blob_storage_enabled
 }
 
 ################################################################################
 # ECR details
 ################################################################################
-output "platform_user_ecr_url" {
+output "platform_ecr_url" {
   description = "The ECR url to connect"
   value       = var.feature_docker_registry_enabled ? "${var.aws_account_id}.dkr.ecr.${var.aws_region}.amazonaws.com" : ""
+}
+
+output "platform_ecr_enabled" {
+  description = "Platform ECR is enabled"
+  value       = var.platform_feature_enabled && var.feature_docker_registry_enabled
+}
+
+################################################################################
+# Secrets Manager details
+################################################################################
+output "platform_secrets_manager_enabled" {
+  description = "Platform Secrets Manager is enabled"
+  value       = var.platform_feature_enabled && var.feature_secrets_manager_enabled
+}
+
+################################################################################
+# Parameter Store details
+################################################################################
+output "platform_ssm_enabled" {
+  description = "Platform Parameter Store is enabled"
+  value       = var.platform_feature_enabled && var.feature_parameter_store_enabled
+}
+
+################################################################################
+# Cluster integration details
+################################################################################
+output "platform_cluster_integration_enabled" {
+  description = "Platform cluster integration is enabled"
+  value       = var.platform_feature_enabled && var.feature_cluster_integration_enabled
 }

@@ -187,8 +187,9 @@ resource "aws_iam_policy" "truefoundry_platform_feature_cluster_integration_poli
 
 resource "aws_iam_role" "truefoundry_platform_feature_iam_role" {
   count                 = var.platform_feature_enabled ? 1 : 0
-  name                  = var.platform_role_enable_override ? var.platform_role_override_name : "${local.truefoundry_unique_name}-iam-role"
+  name                  = var.platform_role_enable_override ? var.platform_role_override_name : null
   description           = "IAM role for TrueFoundry to access S3 bucket, SSM and ECR"
+  name_prefix           = var.platform_role_enable_override ? null : "${local.truefoundry_unique_name}-iam-role-"
   force_detach_policies = true
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

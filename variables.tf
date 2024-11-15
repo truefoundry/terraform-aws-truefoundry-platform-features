@@ -24,40 +24,6 @@ variable "aws_secret_access_key" {
   type        = string
 }
 
-variable "aws_role_arn" {
-  description = "AWS role arn"
-  type        = string
-}
-
-variable "aws_s3_enabled" {
-  description = "Enable S3 bucket creation"
-  type        = bool
-  default     = false
-}
-
-variable "aws_s3_bucket_name" {
-  description = "Name of the S3 bucket"
-  type        = string
-}
-
-variable "aws_ecr_enabled" {
-  description = "Enable ECR repository creation"
-  type        = bool
-  default     = false
-}
-
-variable "aws_parameter_store_enabled" {
-  description = "Enable parameter store creation"
-  type        = bool
-  default     = false
-}
-
-variable "aws_secrets_manager_enabled" {
-  description = "Enable secrets manager creation"
-  type        = bool
-  default     = false
-}
-
 variable "aws_service_account_enabled" {
   description = "Enable service account creation"
   type        = bool

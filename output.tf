@@ -51,6 +51,11 @@ output "platform_user_arn" {
 ################################################################################
 # Bucket details
 ################################################################################
+output "platform_bucket_enabled" {
+  description = "Flag to enable S3 bucket for the platform"
+  value       = var.platform_feature_enabled && var.feature_blob_storage_enabled
+}
+
 output "platform_bucket_name" {
   description = "Name/ID of the S3 bucket"
   value       = var.feature_blob_storage_enabled ? module.truefoundry_bucket[0].s3_bucket_id : ""
@@ -61,22 +66,17 @@ output "platform_bucket_arn" {
   value       = var.feature_blob_storage_enabled ? module.truefoundry_bucket[0].s3_bucket_arn : ""
 }
 
-output "platform_bucket_enabled" {
-  description = "Flag to enable S3 bucket for the platform"
-  value = var.platform_feature_enabled && var.feature_blob_storage_enabled
-}
-
 ################################################################################
 # ECR details
 ################################################################################
-output "platform_ecr_url" {
-  description = "The ECR url to connect"
-  value       = var.feature_docker_registry_enabled ? "${var.aws_account_id}.dkr.ecr.${var.aws_region}.amazonaws.com" : ""
-}
-
 output "platform_ecr_enabled" {
   description = "Flag to enable ECR for the platform"
   value       = var.platform_feature_enabled && var.feature_docker_registry_enabled
+}
+
+output "platform_ecr_url" {
+  description = "The ECR url to connect"
+  value       = var.feature_docker_registry_enabled ? "${var.aws_account_id}.dkr.ecr.${var.aws_region}.amazonaws.com" : ""
 }
 
 ################################################################################

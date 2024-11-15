@@ -1,5 +1,5 @@
 module "integrations" {
-  source = "git::https://github.com/truefoundry/terraform-truefoundry-integrations.git?ref=v0.1.0-rc.3"
+  source = "git::https://github.com/truefoundry/terraform-truefoundry-integrations.git?ref=v0.1.0-rc.2"
 
   count = var.aws_cluster_integration_enabled ? 1 : 0
 

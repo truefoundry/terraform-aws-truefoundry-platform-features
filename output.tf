@@ -1,7 +1,7 @@
 # From https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/outputs.tf
 
 ################################################################################
-# Iam Role details
+# IAM role details
 ################################################################################
 output "platform_iam_role_arn" {
   description = "The platform IAM role arn"
@@ -19,7 +19,7 @@ output "platform_iam_role_policy_arns" {
 }
 
 output "platform_iam_role_enabled" {
-  description = "The platform IAM role is enabled"
+  description = "Flag to enable IAM role for the platform. Enable this or `platform_user_enabled`"
   value       = var.platform_feature_enabled
 }
 
@@ -28,7 +28,7 @@ output "platform_iam_role_enabled" {
 ################################################################################
 
 output "platform_user_enabled" {
-  description = "The user is enabled"
+  description = "Flag to enable user for the platform. Either this or `platform_iam_role_enabled` should be enabled"
   value       = var.platform_feature_enabled && var.platform_user_enabled
 }
 
@@ -52,17 +52,17 @@ output "platform_user_arn" {
 # Bucket details
 ################################################################################
 output "platform_bucket_name" {
-  description = "The bucket's ID/name"
+  description = "Name/ID of the S3 bucket"
   value       = var.feature_blob_storage_enabled ? module.truefoundry_bucket[0].s3_bucket_id : ""
 }
 
 output "platform_bucket_arn" {
-  description = "The bucket's arn"
+  description = "ARN of the S3 bucket"
   value       = var.feature_blob_storage_enabled ? module.truefoundry_bucket[0].s3_bucket_arn : ""
 }
 
 output "platform_bucket_enabled" {
-  description = "Platform bucket is enabled"
+  description = "Flag to enable S3 bucket for the platform"
   value = var.platform_feature_enabled && var.feature_blob_storage_enabled
 }
 
@@ -75,7 +75,7 @@ output "platform_ecr_url" {
 }
 
 output "platform_ecr_enabled" {
-  description = "Platform ECR is enabled"
+  description = "Flag to enable ECR for the platform"
   value       = var.platform_feature_enabled && var.feature_docker_registry_enabled
 }
 
@@ -83,7 +83,7 @@ output "platform_ecr_enabled" {
 # Secrets Manager details
 ################################################################################
 output "platform_secrets_manager_enabled" {
-  description = "Platform Secrets Manager is enabled"
+  description = "Flag to enable Secrets Manager for the platform"
   value       = var.platform_feature_enabled && var.feature_secrets_manager_enabled
 }
 
@@ -91,7 +91,7 @@ output "platform_secrets_manager_enabled" {
 # Parameter Store details
 ################################################################################
 output "platform_ssm_enabled" {
-  description = "Platform Parameter Store is enabled"
+  description = "Flag to enable Parameter Store for the platform"
   value       = var.platform_feature_enabled && var.feature_parameter_store_enabled
 }
 
@@ -99,6 +99,6 @@ output "platform_ssm_enabled" {
 # Cluster integration details
 ################################################################################
 output "platform_cluster_integration_enabled" {
-  description = "Platform cluster integration is enabled"
+  description = "Flag to enable cluster integration for the platform"
   value       = var.platform_feature_enabled && var.feature_cluster_integration_enabled
 }

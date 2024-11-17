@@ -30,7 +30,7 @@ variable "aws_service_account_enabled" {
   default     = false
 }
 
-variable "aws_cluster_integration_enabled" {
+variable "cluster_integration_enabled" {
   description = "Enable cluster integration creation"
   type        = bool
   default     = false

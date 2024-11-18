@@ -6,14 +6,14 @@ Truefoundry AWS platform features
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.4 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.57.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.4 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.57 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.57.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5.57 |
 
 ## Modules
 
@@ -56,7 +56,7 @@ Truefoundry AWS platform features
 | <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | AWS account id | `string` | n/a | yes |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region | `string` | n/a | yes |
 | <a name="input_blob_storage_cors_origins"></a> [blob\_storage\_cors\_origins](#input\_blob\_storage\_cors\_origins) | List of CORS origins for Mlfoundry bucket | `list(string)` | <pre>[<br/>  "*"<br/>]</pre> | no |
-| <a name="input_blob_storage_enable_override"></a> [blob\_storage\_enable\_override](#input\_blob\_storage\_enable\_override) | Enable overriding the name of s3 bucket. This will only be used if feature\_blob\_storage\_enabled is enabled. You need to pass s3\_override\_name to pass the bucket name | `bool` | `false` | no |
+| <a name="input_blob_storage_enable_override"></a> [blob\_storage\_enable\_override](#input\_blob\_storage\_enable\_override) | Enable overriding the name of s3 bucket. This will only be used if feature\_blob\_storage\_enabled is enabled. You need to pass blob\_storage\_override\_name to pass the bucket name | `bool` | `false` | no |
 | <a name="input_blob_storage_encryption_algorithm"></a> [blob\_storage\_encryption\_algorithm](#input\_blob\_storage\_encryption\_algorithm) | Algorithm used for encrypting the default bucket. | `string` | `"AES256"` | no |
 | <a name="input_blob_storage_encryption_key_arn"></a> [blob\_storage\_encryption\_key\_arn](#input\_blob\_storage\_encryption\_key\_arn) | ARN of the key used to encrypt the bucket. Only needed if you set aws:kms as encryption algorithm. | `string` | `null` | no |
 | <a name="input_blob_storage_force_destroy"></a> [blob\_storage\_force\_destroy](#input\_blob\_storage\_force\_destroy) | Force destroy for mlfoundry s3 bucket | `bool` | `true` | no |
@@ -68,8 +68,7 @@ Truefoundry AWS platform features
 | <a name="input_feature_docker_registry_enabled"></a> [feature\_docker\_registry\_enabled](#input\_feature\_docker\_registry\_enabled) | Enable docker registry feature in the platform | `bool` | `true` | no |
 | <a name="input_feature_parameter_store_enabled"></a> [feature\_parameter\_store\_enabled](#input\_feature\_parameter\_store\_enabled) | Enable parameter store feature in the platform | `bool` | `true` | no |
 | <a name="input_feature_secrets_manager_enabled"></a> [feature\_secrets\_manager\_enabled](#input\_feature\_secrets\_manager\_enabled) | Enable secrets manager feature in the platform | `bool` | `false` | no |
-| <a name="input_platform_feature_enabled"></a> [platform\_feature\_enabled](#input\_platform\_feature\_enabled) | Enable platform features like docker registry, secrets manager and blob storage | `bool` | `true` | no |
-| <a name="input_platform_role_enable_override"></a> [platform\_role\_enable\_override](#input\_platform\_role\_enable\_override) | Enable overriding the platform role name. You need to pass s3\_override\_name to pass the bucket name | `bool` | `false` | no |
+| <a name="input_platform_role_enable_override"></a> [platform\_role\_enable\_override](#input\_platform\_role\_enable\_override) | Enable overriding the platform role name. You need to pass blob\_storage\_override\_name to pass the bucket name | `bool` | `false` | no |
 | <a name="input_platform_role_override_name"></a> [platform\_role\_override\_name](#input\_platform\_role\_override\_name) | Platform IAM role name which will have access to S3 bucket, SSM and ECR | `string` | `""` | no |
 | <a name="input_platform_user_enabled"></a> [platform\_user\_enabled](#input\_platform\_user\_enabled) | Enable creation of a platform feature user | `bool` | `false` | no |
 | <a name="input_platform_user_force_destroy"></a> [platform\_user\_force\_destroy](#input\_platform\_user\_force\_destroy) | Enable force destroy of the user | `bool` | `true` | no |
@@ -81,15 +80,21 @@ Truefoundry AWS platform features
 
 | Name | Description |
 |------|-------------|
-| <a name="output_platform_iam_role_arn"></a> [platform\_iam\_role\_arn](#output\_platform\_iam\_role\_arn) | The IAM role resource arn |
-| <a name="output_platform_iam_role_assume_role_arns"></a> [platform\_iam\_role\_assume\_role\_arns](#output\_platform\_iam\_role\_assume\_role\_arns) | The IAM role arns which has been assume by platform\_iam\_role |
-| <a name="output_platform_iam_role_name"></a> [platform\_iam\_role\_name](#output\_platform\_iam\_role\_name) | Then name of the IAM role |
-| <a name="output_platform_iam_role_policy_arns"></a> [platform\_iam\_role\_policy\_arns](#output\_platform\_iam\_role\_policy\_arns) | The list of ARNs of policies directly assigned to the IAM user |
+| <a name="output_blob_storage_uri"></a> [blob\_storage\_uri](#output\_blob\_storage\_uri) | URI of the S3 bucket |
+| <a name="output_platform_bucket_arn"></a> [platform\_bucket\_arn](#output\_platform\_bucket\_arn) | ARN of the S3 bucket |
+| <a name="output_platform_bucket_enabled"></a> [platform\_bucket\_enabled](#output\_platform\_bucket\_enabled) | Flag to enable S3 bucket for the platform |
+| <a name="output_platform_bucket_name"></a> [platform\_bucket\_name](#output\_platform\_bucket\_name) | Name/ID of the S3 bucket |
+| <a name="output_platform_cluster_integration_enabled"></a> [platform\_cluster\_integration\_enabled](#output\_platform\_cluster\_integration\_enabled) | Flag to enable cluster integration for the platform |
+| <a name="output_platform_ecr_enabled"></a> [platform\_ecr\_enabled](#output\_platform\_ecr\_enabled) | Flag to enable ECR for the platform |
+| <a name="output_platform_ecr_url"></a> [platform\_ecr\_url](#output\_platform\_ecr\_url) | The ECR url to connect |
+| <a name="output_platform_iam_role_arn"></a> [platform\_iam\_role\_arn](#output\_platform\_iam\_role\_arn) | The platform IAM role arn |
+| <a name="output_platform_iam_role_assume_role_arns"></a> [platform\_iam\_role\_assume\_role\_arns](#output\_platform\_iam\_role\_assume\_role\_arns) | The role arns that can assume the platform IAM role |
+| <a name="output_platform_iam_role_enabled"></a> [platform\_iam\_role\_enabled](#output\_platform\_iam\_role\_enabled) | Flag to enable IAM role for the platform. If false, the user will be created. |
+| <a name="output_platform_iam_role_policy_arns"></a> [platform\_iam\_role\_policy\_arns](#output\_platform\_iam\_role\_policy\_arns) | The platform IAM role policy arns |
+| <a name="output_platform_secrets_manager_enabled"></a> [platform\_secrets\_manager\_enabled](#output\_platform\_secrets\_manager\_enabled) | Flag to enable Secrets Manager for the platform |
+| <a name="output_platform_ssm_enabled"></a> [platform\_ssm\_enabled](#output\_platform\_ssm\_enabled) | Flag to enable Parameter Store for the platform |
 | <a name="output_platform_user_access_key"></a> [platform\_user\_access\_key](#output\_platform\_user\_access\_key) | The user access key ID |
 | <a name="output_platform_user_arn"></a> [platform\_user\_arn](#output\_platform\_user\_arn) | The user IAM resource arn |
-| <a name="output_platform_user_bucket_arn"></a> [platform\_user\_bucket\_arn](#output\_platform\_user\_bucket\_arn) | The bucket's arn |
-| <a name="output_platform_user_bucket_name"></a> [platform\_user\_bucket\_name](#output\_platform\_user\_bucket\_name) | The bucket's ID/name |
-| <a name="output_platform_user_ecr_url"></a> [platform\_user\_ecr\_url](#output\_platform\_user\_ecr\_url) | The ECR url to connect |
-| <a name="output_platform_user_enabled"></a> [platform\_user\_enabled](#output\_platform\_user\_enabled) | The user is enabled |
+| <a name="output_platform_user_enabled"></a> [platform\_user\_enabled](#output\_platform\_user\_enabled) | Flag to enable user for the platform. If false, the iam role will be created. |
 | <a name="output_platform_user_secret_key"></a> [platform\_user\_secret\_key](#output\_platform\_user\_secret\_key) | The user secret key |
 <!-- END_TF_DOCS -->

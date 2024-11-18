@@ -4,6 +4,7 @@
 # IAM role details
 ################################################################################
 output "platform_iam_role_enabled" {
+  description = "Flag to enable IAM role for the platform. If false, the user will be created."
   value = !var.platform_user_enabled
 }
 
@@ -27,7 +28,7 @@ output "platform_iam_role_policy_arns" {
 ################################################################################
 
 output "platform_user_enabled" {
-  description = "Flag to enable user for the platform. Either this or `platform_iam_role_enabled` should be enabled"
+  description = "Flag to enable user for the platform. If false, the iam role will be created."
   value       = var.platform_user_enabled
 }
 

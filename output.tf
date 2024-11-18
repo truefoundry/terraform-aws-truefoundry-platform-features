@@ -9,7 +9,7 @@ output "platform_iam_role_arn" {
 }
 
 output "platform_iam_role_assume_role_arns" {
-  description = "The roles arns that can assume the platform IAM role"
+  description = "The role arns that can assume the platform IAM role"
   value       = var.platform_feature_enabled ? var.control_plane_roles : []
 }
 

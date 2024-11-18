@@ -1,5 +1,5 @@
 module "truefoundry_bucket" {
-  count   = var.platform_feature_enabled ? var.feature_blob_storage_enabled ? 1 : 0 : 0
+  count   = var.feature_blob_storage_enabled ? 1 : 0
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "3.15.0"
 

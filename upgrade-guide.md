@@ -10,6 +10,8 @@ This guide helps in migration from the old terraform modules to the new one.
    - `platform_user_ecr_url` to `platform_ecr_url`
 4. The following outputs have been removed;
    - `platform_iam_role_name`
+5. The following variables have been removed;
+   - `platform_feature_enabled`
 
 # Upgrade guide to AWS platform features module from 0.2.2 to 0.3.0
 1. When upgrading terraform version for platform features ensure that you are running on version `0.2.x` and the platform features is upgraded to the newer 0.3.x version.

@@ -14,12 +14,6 @@ variable "aws_region" {
   type        = string
 }
 
-variable "platform_feature_enabled" {
-  description = "Enable platform features like docker registry, secrets manager and blob storage"
-  type        = bool
-  default     = true
-}
-
 ################################################################################
 # Cluster
 ################################################################################

@@ -67,7 +67,8 @@ output "platform_bucket_arn" {
 }
 
 output "blob_storage_uri" {
-  value = var.feature_blob_storage_enabled ? "s3://${module.truefoundry_bucket[0].s3_bucket_id}" : ""
+  description = "URI of the S3 bucket"
+  value       = var.feature_blob_storage_enabled ? "s3://${module.truefoundry_bucket[0].s3_bucket_id}" : ""
 }
 
 ################################################################################

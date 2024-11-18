@@ -1,7 +1,17 @@
 # AWS Platform Features Upgrade Guide
 This guide helps in migration from the old terraform modules to the new one.
 
-# Updgrade guide to AWS platform features module from 0.2.2 to 0.3.0
+# Upgrade guide to AWS platform features module from 0.3.0 to 0.4.0
+1. When upgrading terraform version for platform features ensure that you are running on the latest version `0.3.x` and the platform features is upgraded to the newer 0.4.x version.
+2. When the `platform_role_enable_override` is set to `false`, then a iam role wil be created with a unique prefix
+3. The following output variables have been replaced with the new ones;
+   - `platform_user_bucket_name` to `platform_bucket_name`
+   - `platform_user_bucket_arn` to `platform_bucket_arn`
+   - `platform_user_ecr_url` to `platform_ecr_url`
+4. The following outputs have been removed;
+   - `platform_iam_role_name`
+
+# Upgrade guide to AWS platform features module from 0.2.2 to 0.3.0
 1. When upgrading terraform version for platform features ensure that you are running on version `0.2.x` and the platform features is upgraded to the newer 0.3.x version.
 2. Update the following variables;
    - `feature_secrets_enabled` to `feature_parameter_store_enabled`

@@ -19,7 +19,7 @@ output "platform_iam_role_policy_arns" {
 }
 
 output "platform_iam_role_enabled" {
-  description = "Flag to enable IAM role for the platform. Enable this or `platform_user_enabled`"
+  description = "Flag to enable IAM role for the platform. Either this or or `platform_user_enabled` should be enabled"
   value       = var.platform_feature_enabled
 }
 

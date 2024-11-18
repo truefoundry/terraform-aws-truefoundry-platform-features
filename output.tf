@@ -3,19 +3,23 @@
 ################################################################################
 # IAM role details
 ################################################################################
+output "platform_iam_role_enabled" {
+  value = !var.platform_user_enabled
+}
+
 output "platform_iam_role_arn" {
   description = "The platform IAM role arn"
-  value       = aws_iam_role.truefoundry_platform_feature_iam_role[0].arn
+  value       = var.platform_user_enabled ? "" : aws_iam_role.truefoundry_platform_feature_iam_role[0].arn
 }
 
 output "platform_iam_role_assume_role_arns" {
   description = "The role arns that can assume the platform IAM role"
-  value       = var.control_plane_roles
+  value       = var.platform_user_enabled ? [] : var.control_plane_roles
 }
 
 output "platform_iam_role_policy_arns" {
   description = "The platform IAM role policy arns"
-  value       = local.truefoundry_platform_policy_arns
+  value       = var.platform_user_enabled ? [] : local.truefoundry_platform_policy_arns
 }
 
 ################################################################################

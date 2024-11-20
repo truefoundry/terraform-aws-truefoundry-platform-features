@@ -43,6 +43,7 @@ Truefoundry AWS platform features
 | [aws_iam_user_policy_attachment.truefoundry_platform_user_parameter_store_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
 | [aws_iam_user_policy_attachment.truefoundry_platform_user_s3_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
 | [aws_iam_user_policy_attachment.truefoundry_platform_user_secrets_manager_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
+| [aws_eks_cluster.cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster) | data source |
 | [aws_iam_policy_document.truefoundry_platform_feature_cluster_integration_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.truefoundry_platform_feature_ecr_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.truefoundry_platform_feature_parameter_store_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
@@ -68,6 +69,8 @@ Truefoundry AWS platform features
 | <a name="input_feature_docker_registry_enabled"></a> [feature\_docker\_registry\_enabled](#input\_feature\_docker\_registry\_enabled) | Enable docker registry feature in the platform | `bool` | `true` | no |
 | <a name="input_feature_parameter_store_enabled"></a> [feature\_parameter\_store\_enabled](#input\_feature\_parameter\_store\_enabled) | Enable parameter store feature in the platform | `bool` | `true` | no |
 | <a name="input_feature_secrets_manager_enabled"></a> [feature\_secrets\_manager\_enabled](#input\_feature\_secrets\_manager\_enabled) | Enable secrets manager feature in the platform | `bool` | `false` | no |
+| <a name="input_flyte_propeller_serviceaccount_name"></a> [flyte\_propeller\_serviceaccount\_name](#input\_flyte\_propeller\_serviceaccount\_name) | Name for the Flyte Propeller service account | `string` | `"flytepropeller"` | no |
+| <a name="input_flyte_propeller_serviceaccount_namespace"></a> [flyte\_propeller\_serviceaccount\_namespace](#input\_flyte\_propeller\_serviceaccount\_namespace) | Namespace for the Flyte Propeller service account | `string` | `"tfy-workflow-propeller"` | no |
 | <a name="input_platform_role_enable_override"></a> [platform\_role\_enable\_override](#input\_platform\_role\_enable\_override) | Enable overriding the platform role name. You need to pass blob\_storage\_override\_name to pass the bucket name | `bool` | `false` | no |
 | <a name="input_platform_role_override_name"></a> [platform\_role\_override\_name](#input\_platform\_role\_override\_name) | Platform IAM role name which will have access to S3 bucket, SSM and ECR | `string` | `""` | no |
 | <a name="input_platform_user_enabled"></a> [platform\_user\_enabled](#input\_platform\_user\_enabled) | Enable creation of a platform feature user | `bool` | `false` | no |

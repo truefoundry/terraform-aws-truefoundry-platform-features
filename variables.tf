@@ -153,6 +153,21 @@ variable "feature_cluster_integration_enabled" {
   default     = true
 }
 
+################################################################################
+## Flyte Propeller
+################################################################################
+variable "flyte_propeller_serviceaccount_namespace" {
+  description = "Namespace for the Flyte Propeller service account"
+  type        = string
+  default     = "tfy-workflow-propeller"
+}
+
+variable "flyte_propeller_serviceaccount_name" {
+  description = "Name for the Flyte Propeller service account"
+  type        = string
+  default     = "flytepropeller"
+}
+
 ##################################################################################
 ## Other variables
 ##################################################################################

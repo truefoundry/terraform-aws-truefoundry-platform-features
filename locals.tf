@@ -16,4 +16,6 @@ locals {
     var.feature_docker_registry_enabled ? aws_iam_policy.truefoundry_platform_feature_ecr_policy[0].arn : null,
   ]
   truefoundry_platform_policy_arns = [for arn in local.policy_arns : tostring(arn) if arn != null]
+
+  oidc_provider_url = replace(data.aws_eks_cluster.cluster.identity.0.oidc.0.issuer, "https://", "")
 }

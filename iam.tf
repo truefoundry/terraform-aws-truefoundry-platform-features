@@ -1,3 +1,7 @@
+data "aws_eks_cluster" "cluster" {
+  name = var.cluster_name
+}
+
 data "aws_iam_policy_document" "truefoundry_platform_feature_s3_policy_document" {
   count = var.feature_blob_storage_enabled ? 1 : 0
   statement {
@@ -191,17 +195,34 @@ resource "aws_iam_role" "truefoundry_platform_feature_iam_role" {
   description           = "IAM role for TrueFoundry platform to access S3 bucket, SSM, ECR and EKS"
   name_prefix           = var.platform_role_enable_override ? null : "${local.truefoundry_unique_name}-iam-role-"
   force_detach_policies = true
+
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [for role in var.control_plane_roles : {
-      Action = "sts:AssumeRole"
-      Effect = "Allow"
-      Sid    = ""
-      Principal = {
-        AWS = role
-      }
-      }
-    ]
+    Statement = concat(
+      [for role in var.control_plane_roles : {
+        Sid    = ""
+        Effect = "Allow"
+        Action = "sts:AssumeRole"
+        Principal = {
+          AWS = role
+        }
+      }],
+      [
+        {
+          Effect = "Allow"
+          Action = "sts:AssumeRoleWithWebIdentity"
+          Principal = {
+            Federated = "arn:aws:iam::${var.aws_account_id}:oidc-provider/${local.oidc_provider_url}"
+          }
+          Condition = {
+            StringEquals = {
+              "${local.oidc_provider_url}:aud" = "sts.amazonaws.com"
+              "${local.oidc_provider_url}:sub" = "system:serviceaccount:${var.flyte_propeller_serviceaccount_namespace}:${var.flyte_propeller_serviceaccount_name}"
+            }
+          }
+        }
+      ]
+    )
   })
 
   tags = local.tags

@@ -192,7 +192,7 @@ resource "aws_iam_policy" "truefoundry_platform_feature_cluster_integration_poli
 resource "aws_iam_role" "truefoundry_platform_feature_iam_role" {
   count                 = var.platform_user_enabled ? 0 : 1
   name                  = var.platform_role_enable_override ? var.platform_role_override_name : null
-  description           = "IAM role for TrueFoundry platform to access S3 bucket, SSM, ECR, and EKS"
+  description           = "IAM role for TrueFoundry platform to access S3 bucket, SSM, ECR and EKS"
   name_prefix           = var.platform_role_enable_override ? null : "${local.truefoundry_unique_name}-iam-role-"
   force_detach_policies = true
 

@@ -18,4 +18,5 @@ locals {
   truefoundry_platform_policy_arns = [for arn in local.policy_arns : tostring(arn) if arn != null]
 
   oidc_provider_url = replace(data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer, "https://", "")
+  iam_role_name_prefix           = trimsuffix(substr("${local.truefoundry_unique_name}-iam-role-", 0, 37), "-")
 }

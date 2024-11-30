@@ -8,7 +8,7 @@ locals {
     var.tags
   )
   truefoundry_unique_name = "${var.cluster_name}-platform"
-  bucket_name             = var.blob_storage_enable_override ? var.blob_storage_override_name : "${var.cluster_name}-ml"
+  bucket_name             = var.blob_storage_enable_override ? lower(var.blob_storage_override_name) : lower("${var.cluster_name}-ml")
   policy_arns = [
     var.feature_blob_storage_enabled ? aws_iam_policy.truefoundry_platform_feature_s3_policy[0].arn : null,
     var.feature_parameter_store_enabled ? aws_iam_policy.truefoundry_platform_feature_parameter_store_policy[0].arn : null,

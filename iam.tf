@@ -1,7 +1,3 @@
-data "aws_eks_cluster" "cluster" {
-  name = var.cluster_name
-}
-
 data "aws_iam_policy_document" "truefoundry_platform_feature_s3_policy_document" {
   count = var.feature_blob_storage_enabled ? 1 : 0
   statement {

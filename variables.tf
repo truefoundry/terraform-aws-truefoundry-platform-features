@@ -14,6 +14,12 @@ variable "aws_region" {
   type        = string
 }
 
+variable "oidc_provider_url" {
+  description = "OIDC provider URL"
+  type        = string
+  default     = ""
+}
+
 ################################################################################
 # Cluster
 ################################################################################

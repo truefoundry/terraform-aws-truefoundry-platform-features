@@ -60,6 +60,7 @@ Truefoundry AWS platform features
 | <a name="input_blob_storage_enable_override"></a> [blob\_storage\_enable\_override](#input\_blob\_storage\_enable\_override) | Enable overriding the name of s3 bucket. This will only be used if feature\_blob\_storage\_enabled is enabled. You need to pass blob\_storage\_override\_name to pass the bucket name | `bool` | `false` | no |
 | <a name="input_blob_storage_encryption_algorithm"></a> [blob\_storage\_encryption\_algorithm](#input\_blob\_storage\_encryption\_algorithm) | Algorithm used for encrypting the default bucket. | `string` | `"AES256"` | no |
 | <a name="input_blob_storage_encryption_key_arn"></a> [blob\_storage\_encryption\_key\_arn](#input\_blob\_storage\_encryption\_key\_arn) | ARN of the key used to encrypt the bucket. Only needed if you set aws:kms as encryption algorithm. | `string` | `null` | no |
+| <a name="input_blob_storage_extra_tags"></a> [blob\_storage\_extra\_tags](#input\_blob\_storage\_extra\_tags) | Extra tags for the s3 bucket | `map(string)` | `{}` | no |
 | <a name="input_blob_storage_force_destroy"></a> [blob\_storage\_force\_destroy](#input\_blob\_storage\_force\_destroy) | Force destroy for mlfoundry s3 bucket | `bool` | `true` | no |
 | <a name="input_blob_storage_override_name"></a> [blob\_storage\_override\_name](#input\_blob\_storage\_override\_name) | S3 bucket name. Only used if s3\_enable\_override is enabled | `string` | `""` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the EKS cluster | `string` | n/a | yes |

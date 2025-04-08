@@ -123,6 +123,12 @@ variable "blob_storage_cors_origins" {
   type        = list(string)
   default     = ["*"]
 }
+
+variable "blob_storage_extra_tags" {
+  description = "Extra tags for the s3 bucket"
+  type        = map(string)
+  default     = {}
+}
 ################################################################################
 # Parameter Store
 ################################################################################

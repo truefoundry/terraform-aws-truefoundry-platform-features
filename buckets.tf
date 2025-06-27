@@ -18,15 +18,16 @@ module "truefoundry_bucket" {
 
 
   # Bucket policies
-  attach_policy                         = true
-  attach_deny_insecure_transport_policy = true
-  attach_require_latest_tls_policy      = true
+  attach_policy                         = var.blob_storage_attach_policy
+  attach_deny_insecure_transport_policy = var.blob_storage_attach_deny_insecure_transport_policy
+  attach_require_latest_tls_policy      = var.blob_storage_attach_require_latest_tls_policy
+  attach_public_policy                  = var.blob_storage_attach_public_policy
 
   # S3 bucket-level Public Access Block configuration
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
+  block_public_acls       = var.blob_storage_block_public_acls
+  block_public_policy     = var.blob_storage_block_public_policy
+  ignore_public_acls      = var.blob_storage_ignore_public_acls
+  restrict_public_buckets = var.blob_storage_restrict_public_buckets
 
   versioning = {
     status     = true

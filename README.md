@@ -56,13 +56,21 @@ Truefoundry AWS platform features
 |------|-------------|------|---------|:--------:|
 | <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | AWS account id | `string` | n/a | yes |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region | `string` | n/a | yes |
+| <a name="input_blob_storage_attach_deny_insecure_transport_policy"></a> [blob\_storage\_attach\_deny\_insecure\_transport\_policy](#input\_blob\_storage\_attach\_deny\_insecure\_transport\_policy) | Attach deny insecure transport policy to the bucket | `bool` | `true` | no |
+| <a name="input_blob_storage_attach_policy"></a> [blob\_storage\_attach\_policy](#input\_blob\_storage\_attach\_policy) | Attach policy to the bucket | `bool` | `true` | no |
+| <a name="input_blob_storage_attach_public_policy"></a> [blob\_storage\_attach\_public\_policy](#input\_blob\_storage\_attach\_public\_policy) | Attach public policy to the bucket | `bool` | `true` | no |
+| <a name="input_blob_storage_attach_require_latest_tls_policy"></a> [blob\_storage\_attach\_require\_latest\_tls\_policy](#input\_blob\_storage\_attach\_require\_latest\_tls\_policy) | Attach require latest TLS policy to the bucket | `bool` | `true` | no |
+| <a name="input_blob_storage_block_public_acls"></a> [blob\_storage\_block\_public\_acls](#input\_blob\_storage\_block\_public\_acls) | Block public ACLs | `bool` | `true` | no |
+| <a name="input_blob_storage_block_public_policy"></a> [blob\_storage\_block\_public\_policy](#input\_blob\_storage\_block\_public\_policy) | Block public policy | `bool` | `true` | no |
 | <a name="input_blob_storage_cors_origins"></a> [blob\_storage\_cors\_origins](#input\_blob\_storage\_cors\_origins) | List of CORS origins for Mlfoundry bucket | `list(string)` | <pre>[<br/>  "*"<br/>]</pre> | no |
 | <a name="input_blob_storage_enable_override"></a> [blob\_storage\_enable\_override](#input\_blob\_storage\_enable\_override) | Enable overriding the name of s3 bucket. This will only be used if feature\_blob\_storage\_enabled is enabled. You need to pass blob\_storage\_override\_name to pass the bucket name | `bool` | `false` | no |
 | <a name="input_blob_storage_encryption_algorithm"></a> [blob\_storage\_encryption\_algorithm](#input\_blob\_storage\_encryption\_algorithm) | Algorithm used for encrypting the default bucket. | `string` | `"AES256"` | no |
 | <a name="input_blob_storage_encryption_key_arn"></a> [blob\_storage\_encryption\_key\_arn](#input\_blob\_storage\_encryption\_key\_arn) | ARN of the key used to encrypt the bucket. Only needed if you set aws:kms as encryption algorithm. | `string` | `null` | no |
 | <a name="input_blob_storage_extra_tags"></a> [blob\_storage\_extra\_tags](#input\_blob\_storage\_extra\_tags) | Extra tags for the s3 bucket | `map(string)` | `{}` | no |
 | <a name="input_blob_storage_force_destroy"></a> [blob\_storage\_force\_destroy](#input\_blob\_storage\_force\_destroy) | Force destroy for mlfoundry s3 bucket | `bool` | `true` | no |
+| <a name="input_blob_storage_ignore_public_acls"></a> [blob\_storage\_ignore\_public\_acls](#input\_blob\_storage\_ignore\_public\_acls) | Ignore public ACLs | `bool` | `true` | no |
 | <a name="input_blob_storage_override_name"></a> [blob\_storage\_override\_name](#input\_blob\_storage\_override\_name) | S3 bucket name. Only used if s3\_enable\_override is enabled | `string` | `""` | no |
+| <a name="input_blob_storage_restrict_public_buckets"></a> [blob\_storage\_restrict\_public\_buckets](#input\_blob\_storage\_restrict\_public\_buckets) | Restrict public buckets | `bool` | `true` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the EKS cluster | `string` | n/a | yes |
 | <a name="input_control_plane_roles"></a> [control\_plane\_roles](#input\_control\_plane\_roles) | Control plane roles that can assume your platform role | `list(string)` | <pre>[<br/>  "arn:aws:iam::416964291864:role/tfy-ctl-euwe1-production-truefoundry-deps"<br/>]</pre> | no |
 | <a name="input_feature_blob_storage_enabled"></a> [feature\_blob\_storage\_enabled](#input\_feature\_blob\_storage\_enabled) | Enable blob storage feature in the platform | `bool` | `true` | no |

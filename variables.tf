@@ -100,6 +100,54 @@ variable "blob_storage_override_name" {
   default     = ""
 }
 
+variable "blob_storage_attach_policy" {
+  description = "Attach policy to the bucket"
+  type        = bool
+  default     = true
+}
+
+variable "blob_storage_attach_deny_insecure_transport_policy" {
+  description = "Attach deny insecure transport policy to the bucket"
+  type        = bool
+  default     = true
+}
+
+variable "blob_storage_attach_require_latest_tls_policy" {
+  description = "Attach require latest TLS policy to the bucket"
+  type        = bool
+  default     = true
+}
+
+variable "blob_storage_attach_public_policy" {
+  description = "Attach public policy to the bucket"
+  type        = bool
+  default     = true
+}
+
+variable "blob_storage_block_public_acls" {
+  description = "Block public ACLs"
+  type        = bool
+  default     = true
+}
+
+variable "blob_storage_block_public_policy" {
+  description = "Block public policy"
+  type        = bool
+  default     = true
+}
+
+variable "blob_storage_ignore_public_acls" {
+  description = "Ignore public ACLs"
+  type        = bool
+  default     = true
+}
+
+variable "blob_storage_restrict_public_buckets" {
+  description = "Restrict public buckets"
+  type        = bool
+  default     = true
+}
+
 variable "blob_storage_encryption_algorithm" {
   description = "Algorithm used for encrypting the default bucket."
   type        = string

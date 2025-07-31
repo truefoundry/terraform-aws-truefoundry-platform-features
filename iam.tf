@@ -2,6 +2,8 @@ data "aws_eks_cluster" "cluster" {
   name = var.cluster_name
 }
 
+data "aws_partition" "current" {}
+
 data "aws_iam_policy_document" "truefoundry_platform_feature_s3_policy_document" {
   count = var.feature_blob_storage_enabled ? 1 : 0
   statement {
@@ -30,7 +32,7 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_parameter_store_pol
       "ssm:GetParameterHistory"
     ]
     resources = [
-      "arn:aws:ssm:${var.aws_region}:${var.aws_account_id}:parameter/tfy-secret/*"
+      "arn:${data.aws_partition.current.partition}:ssm:${var.aws_region}:${var.aws_account_id}:parameter/tfy-secret/*"
     ]
   }
 }
@@ -49,7 +51,7 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_secrets_manager_pol
       "secretsmanager:PutSecretValue",
     ]
     resources = [
-      "arn:aws:secretsmanager:${var.aws_region}:${var.aws_account_id}:secret:/tfy-secret/*"
+      "arn:${data.aws_partition.current.partition}:secretsmanager:${var.aws_region}:${var.aws_account_id}:secret:/tfy-secret/*"
     ]
   }
 }
@@ -83,7 +85,7 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_ecr_policy_document
     ]
 
     resources = [
-      "arn:aws:ecr:${var.aws_region}:${var.aws_account_id}:repository/tfy-*"
+      "arn:${data.aws_partition.current.partition}:ecr:${var.aws_region}:${var.aws_account_id}:repository/tfy-*"
     ]
   }
   statement {
@@ -120,12 +122,12 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_cluster_integration
     ]
 
     resources = [
-      "arn:aws:eks:${var.aws_region}:${var.aws_account_id}:fargateprofile/${var.cluster_name}/*/*",
-      "arn:aws:eks:${var.aws_region}:${var.aws_account_id}:addon/${var.cluster_name}/*/*",
-      "arn:aws:eks:${var.aws_region}:${var.aws_account_id}:nodegroup/${var.cluster_name}/*/*",
-      "arn:aws:eks:${var.aws_region}:${var.aws_account_id}:podidentityassociation/${var.cluster_name}/*",
-      "arn:aws:eks:${var.aws_region}:${var.aws_account_id}:identityproviderconfig/${var.cluster_name}/*/*/*",
-      "arn:aws:eks:${var.aws_region}:${var.aws_account_id}:cluster/${var.cluster_name}"
+      "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:fargateprofile/${var.cluster_name}/*/*",
+      "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:addon/${var.cluster_name}/*/*",
+      "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:nodegroup/${var.cluster_name}/*/*",
+      "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:podidentityassociation/${var.cluster_name}/*",
+      "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:identityproviderconfig/${var.cluster_name}/*/*/*",
+      "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:cluster/${var.cluster_name}"
     ]
   }
   statement {
@@ -212,7 +214,7 @@ resource "aws_iam_role" "truefoundry_platform_feature_iam_role" {
           Effect = "Allow"
           Action = "sts:AssumeRoleWithWebIdentity"
           Principal = {
-            Federated = "arn:aws:iam::${var.aws_account_id}:oidc-provider/${local.oidc_provider_url}"
+            Federated = "arn:${data.aws_partition.current.partition}:iam::${var.aws_account_id}:oidc-provider/${local.oidc_provider_url}"
           }
           Condition = {
             StringEquals = {

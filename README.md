@@ -32,12 +32,14 @@ Truefoundry AWS platform features
 | [aws_iam_policy.truefoundry_platform_feature_s3_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_iam_policy.truefoundry_platform_feature_secrets_manager_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_iam_role.truefoundry_platform_feature_iam_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [aws_iam_role_policy_attachment.truefoundry_platform_additional_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.truefoundry_platform_cluster_integration_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.truefoundry_platform_ecr_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.truefoundry_platform_parameter_store_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.truefoundry_platform_s3_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.truefoundry_platform_secrets_manager_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_user.truefoundry_platform_user](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user) | resource |
+| [aws_iam_user_policy_attachment.truefoundry_platform_user_additional_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
 | [aws_iam_user_policy_attachment.truefoundry_platform_user_cluster_integration_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
 | [aws_iam_user_policy_attachment.truefoundry_platform_user_ecr_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
 | [aws_iam_user_policy_attachment.truefoundry_platform_user_parameter_store_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy_attachment) | resource |
@@ -82,8 +84,10 @@ Truefoundry AWS platform features
 | <a name="input_flyte_propeller_serviceaccount_name"></a> [flyte\_propeller\_serviceaccount\_name](#input\_flyte\_propeller\_serviceaccount\_name) | Name for the Flyte Propeller service account | `string` | `"flytepropeller"` | no |
 | <a name="input_flyte_propeller_serviceaccount_namespace"></a> [flyte\_propeller\_serviceaccount\_namespace](#input\_flyte\_propeller\_serviceaccount\_namespace) | Namespace for the Flyte Propeller service account | `string` | `"tfy-workflow-propeller"` | no |
 | <a name="input_oidc_provider_url"></a> [oidc\_provider\_url](#input\_oidc\_provider\_url) | OIDC provider URL | `string` | `""` | no |
+| <a name="input_platform_features_additional_policy_arns"></a> [platform\_features\_additional\_policy\_arns](#input\_platform\_features\_additional\_policy\_arns) | Additional policy ARNs to attach to the platform role or platform user | `list(string)` | `[]` | no |
 | <a name="input_platform_role_enable_override"></a> [platform\_role\_enable\_override](#input\_platform\_role\_enable\_override) | Enable overriding the platform role name. You need to pass blob\_storage\_override\_name to pass the bucket name | `bool` | `false` | no |
 | <a name="input_platform_role_override_name"></a> [platform\_role\_override\_name](#input\_platform\_role\_override\_name) | Platform IAM role name which will have access to S3 bucket, SSM and ECR | `string` | `""` | no |
+| <a name="input_platform_role_permissions_boundary_arn"></a> [platform\_role\_permissions\_boundary\_arn](#input\_platform\_role\_permissions\_boundary\_arn) | ARN of the permissions boundary to apply to the platform role | `string` | `null` | no |
 | <a name="input_platform_user_enabled"></a> [platform\_user\_enabled](#input\_platform\_user\_enabled) | Enable creation of a platform feature user | `bool` | `false` | no |
 | <a name="input_platform_user_force_destroy"></a> [platform\_user\_force\_destroy](#input\_platform\_user\_force\_destroy) | Enable force destroy of the user | `bool` | `true` | no |
 | <a name="input_platform_user_name_override_enabled"></a> [platform\_user\_name\_override\_enabled](#input\_platform\_user\_name\_override\_enabled) | Enable overriding the platform user name. You need to pass platform\_user\_override\_name to pass the user name | `bool` | `false` | no |

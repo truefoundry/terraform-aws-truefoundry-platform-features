@@ -51,6 +51,11 @@ variable "platform_role_override_name" {
   default     = ""
 }
 
+variable "platform_role_permissions_boundary_arn" {
+  description = "ARN of the permissions boundary to apply to the platform role"
+  type        = string
+  default     = null
+}
 ################################################################################
 # IAM user
 ################################################################################
@@ -77,6 +82,16 @@ variable "platform_user_force_destroy" {
   description = "Enable force destroy of the user"
   type        = bool
   default     = true
+}
+
+################################################################################
+# Additional IAM policies
+################################################################################
+
+variable "platform_features_additional_policy_arns" {
+  description = "Additional policy ARNs to attach to the platform role or platform user"
+  type        = list(string)
+  default     = []
 }
 ################################################################################
 # Buckets

@@ -76,6 +76,7 @@ Truefoundry AWS platform features
 | <a name="input_blob_storage_restrict_public_buckets"></a> [blob\_storage\_restrict\_public\_buckets](#input\_blob\_storage\_restrict\_public\_buckets) | Restrict public buckets | `bool` | `true` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the EKS cluster | `string` | n/a | yes |
 | <a name="input_control_plane_roles"></a> [control\_plane\_roles](#input\_control\_plane\_roles) | Control plane roles that can assume your platform role | `list(string)` | <pre>[<br/>  "arn:aws:iam::416964291864:role/tfy-ctl-euwe1-production-truefoundry-deps"<br/>]</pre> | no |
+| <a name="input_disable_default_tags"></a> [disable\_default\_tags](#input\_disable\_default\_tags) | Disable default tags | `bool` | `false` | no |
 | <a name="input_feature_blob_storage_enabled"></a> [feature\_blob\_storage\_enabled](#input\_feature\_blob\_storage\_enabled) | Enable blob storage feature in the platform | `bool` | `true` | no |
 | <a name="input_feature_cluster_integration_enabled"></a> [feature\_cluster\_integration\_enabled](#input\_feature\_cluster\_integration\_enabled) | Enable cluster integration feature in the platform | `bool` | `true` | no |
 | <a name="input_feature_docker_registry_enabled"></a> [feature\_docker\_registry\_enabled](#input\_feature\_docker\_registry\_enabled) | Enable docker registry feature in the platform | `bool` | `true` | no |
@@ -85,6 +86,7 @@ Truefoundry AWS platform features
 | <a name="input_flyte_propeller_serviceaccount_namespace"></a> [flyte\_propeller\_serviceaccount\_namespace](#input\_flyte\_propeller\_serviceaccount\_namespace) | Namespace for the Flyte Propeller service account | `string` | `"tfy-workflow-propeller"` | no |
 | <a name="input_oidc_provider_url"></a> [oidc\_provider\_url](#input\_oidc\_provider\_url) | OIDC provider URL | `string` | `""` | no |
 | <a name="input_platform_features_additional_policy_arns"></a> [platform\_features\_additional\_policy\_arns](#input\_platform\_features\_additional\_policy\_arns) | Additional policy ARNs to attach to the platform role or platform user | `list(string)` | `[]` | no |
+| <a name="input_platform_features_iam_policy_prefix"></a> [platform\_features\_iam\_policy\_prefix](#input\_platform\_features\_iam\_policy\_prefix) | Prefix for the IAM policy. If empty, the default prefix will be used | `string` | `""` | no |
 | <a name="input_platform_role_enable_override"></a> [platform\_role\_enable\_override](#input\_platform\_role\_enable\_override) | Enable overriding the platform role name. You need to pass blob\_storage\_override\_name to pass the bucket name | `bool` | `false` | no |
 | <a name="input_platform_role_override_name"></a> [platform\_role\_override\_name](#input\_platform\_role\_override\_name) | Platform IAM role name which will have access to S3 bucket, SSM and ECR | `string` | `""` | no |
 | <a name="input_platform_role_permissions_boundary_arn"></a> [platform\_role\_permissions\_boundary\_arn](#input\_platform\_role\_permissions\_boundary\_arn) | ARN of the permissions boundary to apply to the platform role | `string` | `null` | no |

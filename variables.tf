@@ -93,6 +93,12 @@ variable "platform_features_additional_policy_arns" {
   type        = list(string)
   default     = []
 }
+
+variable "platform_features_iam_policy_prefix" {
+  description = "Prefix for the IAM policy. If empty, the default prefix will be used"
+  type        = string
+  default     = ""
+}
 ################################################################################
 # Buckets
 ################################################################################
@@ -246,6 +252,12 @@ variable "flyte_propeller_serviceaccount_name" {
 ##################################################################################
 ## Other variables
 ##################################################################################
+
+variable "disable_default_tags" {
+  description = "Disable default tags"
+  type        = bool
+  default     = false
+}
 
 variable "tags" {
   description = "A map of tags to add to all resources"

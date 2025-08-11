@@ -94,8 +94,14 @@ variable "platform_features_additional_policy_arns" {
   default     = []
 }
 
-variable "platform_features_iam_policy_prefix" {
-  description = "Prefix for the IAM policy. If empty, the default prefix will be used"
+variable "platform_features_iam_policy_prefix_enable_override" {
+  description = "Enable overriding the IAM policy prefix. If enabled, you need to pass platform_features_iam_policy_prefix_override_name to pass the prefix"
+  type        = bool
+  default     = false
+}
+
+variable "platform_features_iam_policy_prefix_override_name" {
+  description = "Prefix for the IAM policy. If empty, the default prefix will be used. Only used if platform_features_iam_policy_prefix_enable_override is enabled"
   type        = string
   default     = ""
 }

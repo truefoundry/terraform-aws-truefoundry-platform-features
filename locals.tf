@@ -1,6 +1,6 @@
 locals {
   tags = merge(
-    {
+    var.disable_default_tags ? {} : {
       "terraform-module" = "platform-features"
       "terraform"        = "true"
       "cluster-name"     = var.cluster_name
@@ -19,4 +19,6 @@ locals {
 
   oidc_provider_url    = var.oidc_provider_url != "" ? replace(var.oidc_provider_url, "https://", "") : replace(data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer, "https://", "")
   iam_role_name_prefix = trimsuffix(substr("${local.truefoundry_unique_name}-iam-role-", 0, 37), "-")
+
+  platform_features_iam_policy_prefix = var.platform_features_iam_policy_prefix_enable_override ? "${var.platform_features_iam_policy_prefix_override_name}-${local.truefoundry_unique_name}" : local.truefoundry_unique_name
 }

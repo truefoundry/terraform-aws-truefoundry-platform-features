@@ -51,6 +51,11 @@ variable "platform_role_override_name" {
   default     = ""
 }
 
+variable "platform_role_permissions_boundary_arn" {
+  description = "ARN of the permissions boundary to apply to the platform role"
+  type        = string
+  default     = null
+}
 ################################################################################
 # IAM user
 ################################################################################
@@ -77,6 +82,28 @@ variable "platform_user_force_destroy" {
   description = "Enable force destroy of the user"
   type        = bool
   default     = true
+}
+
+################################################################################
+# Additional IAM policies
+################################################################################
+
+variable "platform_features_additional_policy_arns" {
+  description = "Additional policy ARNs to attach to the platform role or platform user"
+  type        = list(string)
+  default     = []
+}
+
+variable "platform_features_iam_policy_prefix_enable_override" {
+  description = "Enable overriding the IAM policy prefix. If enabled, you need to pass platform_features_iam_policy_prefix_override_name to pass the prefix"
+  type        = bool
+  default     = false
+}
+
+variable "platform_features_iam_policy_prefix_override_name" {
+  description = "Prefix for the IAM policy. If empty, the default prefix will be used. Only used if platform_features_iam_policy_prefix_enable_override is enabled"
+  type        = string
+  default     = ""
 }
 ################################################################################
 # Buckets
@@ -231,6 +258,12 @@ variable "flyte_propeller_serviceaccount_name" {
 ##################################################################################
 ## Other variables
 ##################################################################################
+
+variable "disable_default_tags" {
+  description = "Disable default tags"
+  type        = bool
+  default     = false
+}
 
 variable "tags" {
   description = "A map of tags to add to all resources"

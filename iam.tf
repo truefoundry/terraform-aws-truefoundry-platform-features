@@ -148,7 +148,7 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_cluster_integration
 
 resource "aws_iam_policy" "truefoundry_platform_feature_s3_policy" {
   count       = var.feature_blob_storage_enabled ? 1 : 0
-  name_prefix = "${local.truefoundry_unique_name}-s3-access-"
+  name_prefix = "${local.platform_features_iam_policy_prefix}-s3-access-"
   description = "IAM policy for TrueFoundry user for platform features blob storage"
   policy      = data.aws_iam_policy_document.truefoundry_platform_feature_s3_policy_document[0].json
   tags        = local.tags
@@ -156,7 +156,7 @@ resource "aws_iam_policy" "truefoundry_platform_feature_s3_policy" {
 
 resource "aws_iam_policy" "truefoundry_platform_feature_parameter_store_policy" {
   count       = var.feature_parameter_store_enabled ? 1 : 0
-  name_prefix = "${local.truefoundry_unique_name}-parameter-store-access-"
+  name_prefix = "${local.platform_features_iam_policy_prefix}-parameter-store-access-"
   description = "IAM policy for TrueFoundry user for platform features Secrets manager"
   policy      = data.aws_iam_policy_document.truefoundry_platform_feature_parameter_store_policy_document[0].json
   tags        = local.tags
@@ -164,7 +164,7 @@ resource "aws_iam_policy" "truefoundry_platform_feature_parameter_store_policy" 
 
 resource "aws_iam_policy" "truefoundry_platform_feature_secrets_manager_policy" {
   count       = var.feature_secrets_manager_enabled ? 1 : 0
-  name_prefix = "${local.truefoundry_unique_name}-secrets-manager-access-"
+  name_prefix = "${local.platform_features_iam_policy_prefix}-secrets-manager-access-"
   description = "IAM policy for TrueFoundry user for platform features Secrets manager"
   policy      = data.aws_iam_policy_document.truefoundry_platform_feature_secrets_manager_policy_document[0].json
   tags        = local.tags
@@ -172,7 +172,7 @@ resource "aws_iam_policy" "truefoundry_platform_feature_secrets_manager_policy" 
 
 resource "aws_iam_policy" "truefoundry_platform_feature_ecr_policy" {
   count       = var.feature_docker_registry_enabled ? 1 : 0
-  name_prefix = "${local.truefoundry_unique_name}-ecr-access-"
+  name_prefix = "${local.platform_features_iam_policy_prefix}-ecr-access-"
   description = "IAM policy for TrueFoundry user for platform features docker registry"
   policy      = data.aws_iam_policy_document.truefoundry_platform_feature_ecr_policy_document[0].json
   tags        = local.tags
@@ -181,7 +181,7 @@ resource "aws_iam_policy" "truefoundry_platform_feature_ecr_policy" {
 
 resource "aws_iam_policy" "truefoundry_platform_feature_cluster_integration_policy" {
   count       = var.feature_cluster_integration_enabled ? 1 : 0
-  name_prefix = "${local.truefoundry_unique_name}-cluster-integration-access-"
+  name_prefix = "${local.platform_features_iam_policy_prefix}-cluster-integration-access-"
   description = "IAM policy for TrueFoundry user for platform features cluster integration"
   policy      = data.aws_iam_policy_document.truefoundry_platform_feature_cluster_integration_policy_document[0].json
   tags        = local.tags
@@ -197,6 +197,7 @@ resource "aws_iam_role" "truefoundry_platform_feature_iam_role" {
   description           = "IAM role for TrueFoundry platform to access S3 bucket, SSM, ECR and EKS"
   name_prefix           = var.platform_role_enable_override ? null : local.iam_role_name_prefix
   force_detach_policies = true
+  permissions_boundary  = var.platform_role_permissions_boundary_arn
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -260,6 +261,11 @@ resource "aws_iam_role_policy_attachment" "truefoundry_platform_cluster_integrat
   policy_arn = aws_iam_policy.truefoundry_platform_feature_cluster_integration_policy[0].arn
 }
 
+resource "aws_iam_role_policy_attachment" "truefoundry_platform_additional_policy_attachment" {
+  count      = !var.platform_user_enabled ? length(var.platform_features_additional_policy_arns) : 0
+  role       = aws_iam_role.truefoundry_platform_feature_iam_role[0].name
+  policy_arn = var.platform_features_additional_policy_arns[count.index]
+}
 
 ################################################################################
 # IAM user
@@ -307,4 +313,10 @@ resource "aws_iam_user_policy_attachment" "truefoundry_platform_user_cluster_int
   count      = var.feature_cluster_integration_enabled && var.platform_user_enabled ? 1 : 0
   user       = aws_iam_user.truefoundry_platform_user[0].name
   policy_arn = aws_iam_policy.truefoundry_platform_feature_cluster_integration_policy[0].arn
+}
+
+resource "aws_iam_user_policy_attachment" "truefoundry_platform_user_additional_policy_attachment" {
+  count      = var.platform_user_enabled ? length(var.platform_features_additional_policy_arns) : 0
+  user       = aws_iam_user.truefoundry_platform_user[0].name
+  policy_arn = var.platform_features_additional_policy_arns[count.index]
 }

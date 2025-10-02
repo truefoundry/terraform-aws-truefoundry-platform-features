@@ -33,6 +33,12 @@ variable "cluster_name" {
 # IAM role
 ################################################################################
 
+variable "platform_role_enabled" {
+  description = "Enable creation of a platform feature IAM role"
+  type        = bool
+  default     = true
+}
+
 variable "control_plane_roles" {
   description = "Control plane roles that can assume your platform role"
   type        = list(string)

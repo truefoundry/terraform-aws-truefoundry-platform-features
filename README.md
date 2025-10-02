@@ -89,6 +89,7 @@ Truefoundry AWS platform features
 | <a name="input_platform_features_iam_policy_prefix_enable_override"></a> [platform\_features\_iam\_policy\_prefix\_enable\_override](#input\_platform\_features\_iam\_policy\_prefix\_enable\_override) | Enable overriding the IAM policy prefix. If enabled, you need to pass platform\_features\_iam\_policy\_prefix\_override\_name to pass the prefix | `bool` | `false` | no |
 | <a name="input_platform_features_iam_policy_prefix_override_name"></a> [platform\_features\_iam\_policy\_prefix\_override\_name](#input\_platform\_features\_iam\_policy\_prefix\_override\_name) | Prefix for the IAM policy. If empty, the default prefix will be used. Only used if platform\_features\_iam\_policy\_prefix\_enable\_override is enabled | `string` | `""` | no |
 | <a name="input_platform_role_enable_override"></a> [platform\_role\_enable\_override](#input\_platform\_role\_enable\_override) | Enable overriding the platform role name. You need to pass blob\_storage\_override\_name to pass the bucket name | `bool` | `false` | no |
+| <a name="input_platform_role_enabled"></a> [platform\_role\_enabled](#input\_platform\_role\_enabled) | Enable creation of a platform feature IAM role | `bool` | `true` | no |
 | <a name="input_platform_role_override_name"></a> [platform\_role\_override\_name](#input\_platform\_role\_override\_name) | Platform IAM role name which will have access to S3 bucket, SSM and ECR | `string` | `""` | no |
 | <a name="input_platform_role_permissions_boundary_arn"></a> [platform\_role\_permissions\_boundary\_arn](#input\_platform\_role\_permissions\_boundary\_arn) | ARN of the permissions boundary to apply to the platform role | `string` | `null` | no |
 | <a name="input_platform_user_enabled"></a> [platform\_user\_enabled](#input\_platform\_user\_enabled) | Enable creation of a platform feature user | `bool` | `false` | no |
@@ -110,7 +111,7 @@ Truefoundry AWS platform features
 | <a name="output_platform_ecr_url"></a> [platform\_ecr\_url](#output\_platform\_ecr\_url) | The ECR url to connect |
 | <a name="output_platform_iam_role_arn"></a> [platform\_iam\_role\_arn](#output\_platform\_iam\_role\_arn) | The platform IAM role arn |
 | <a name="output_platform_iam_role_assume_role_arns"></a> [platform\_iam\_role\_assume\_role\_arns](#output\_platform\_iam\_role\_assume\_role\_arns) | The role arns that can assume the platform IAM role |
-| <a name="output_platform_iam_role_enabled"></a> [platform\_iam\_role\_enabled](#output\_platform\_iam\_role\_enabled) | Flag to enable IAM role for the platform. If false, the user will be created. |
+| <a name="output_platform_iam_role_enabled"></a> [platform\_iam\_role\_enabled](#output\_platform\_iam\_role\_enabled) | Flag to enable IAM role for the platform |
 | <a name="output_platform_iam_role_policy_arns"></a> [platform\_iam\_role\_policy\_arns](#output\_platform\_iam\_role\_policy\_arns) | The platform IAM role policy arns |
 | <a name="output_platform_secrets_manager_enabled"></a> [platform\_secrets\_manager\_enabled](#output\_platform\_secrets\_manager\_enabled) | Flag to enable Secrets Manager for the platform |
 | <a name="output_platform_ssm_enabled"></a> [platform\_ssm\_enabled](#output\_platform\_ssm\_enabled) | Flag to enable Parameter Store for the platform |

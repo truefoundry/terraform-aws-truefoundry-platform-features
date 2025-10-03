@@ -34,6 +34,10 @@ variable "cluster_name" {
 ################################################################################
 
 variable "platform_role_enabled" {
+  validation {
+    condition     = !(var.platform_user_enabled && var.platform_role_enabled)
+    error_message = "Both platform_user_enabled and platform_role_enabled cannot be true at the same time. Please enable only one of them."
+  }
   description = "Enable creation of a platform feature IAM role"
   type        = bool
   default     = true

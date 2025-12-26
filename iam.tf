@@ -119,6 +119,7 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_cluster_integration
       "eks:DescribeUpdate",
       "eks:AccessKubernetesApi",
       "eks:DescribeCluster",
+      "eks:UpdateNodegroupConfig",
     ]
 
     resources = [
@@ -127,7 +128,10 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_cluster_integration
       "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:nodegroup/${var.cluster_name}/*/*",
       "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:podidentityassociation/${var.cluster_name}/*",
       "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:identityproviderconfig/${var.cluster_name}/*/*/*",
-      "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:cluster/${var.cluster_name}"
+      "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:cluster/${var.cluster_name}",
+      "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:dashboard/*",
+      "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:eks-anywhere-subscription/*",
+      "arn:${data.aws_partition.current.partition}:eks:${var.aws_region}:${var.aws_account_id}:capability/${var.cluster_name}/*/*/*"
     ]
   }
   statement {

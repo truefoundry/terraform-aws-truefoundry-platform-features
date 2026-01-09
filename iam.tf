@@ -119,7 +119,7 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_cluster_integration
       "eks:DescribeUpdate",
       "eks:AccessKubernetesApi",
       "eks:DescribeCluster",
-      "eks:UpdateNodegroupConfig",
+      "eks:UpdateNodegroupConfig"
     ]
 
     resources = [
@@ -140,7 +140,11 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_cluster_integration
       "eks:DescribeAddonConfiguration",
       "eks:ListClusters",
       "eks:DescribeAddonVersions",
-      "ec2:DescribeRegions"
+      "ec2:DescribeRegions",
+      "eks:CreateAccessEntry",
+      "eks:DeleteAccessEntry", 
+      "eks:AssociateAccessPolicy",
+      "eks:DisassociateAccessPolicy"
     ]
 
     resources = [

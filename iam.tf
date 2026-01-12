@@ -142,7 +142,7 @@ data "aws_iam_policy_document" "truefoundry_platform_feature_cluster_integration
       "eks:DescribeAddonVersions",
       "ec2:DescribeRegions",
       "eks:CreateAccessEntry",
-      "eks:DeleteAccessEntry", 
+      "eks:DeleteAccessEntry",
       "eks:AssociateAccessPolicy",
       "eks:DisassociateAccessPolicy"
     ]

@@ -232,6 +232,15 @@ resource "aws_iam_role" "truefoundry_platform_feature_iam_role" {
             }
           }
         }
+      ],
+      [
+        {
+          Effect = "Allow"
+          Action = "sts:AssumeRole"
+          Principal = {
+            AWS = "arn:${data.aws_partition.current.partition}:iam::${var.aws_account_id}:root"
+          }
+        }
       ]
     )
   })

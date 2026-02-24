@@ -1,7 +1,7 @@
 module "truefoundry_bucket" {
   count   = var.feature_blob_storage_enabled ? 1 : 0
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "3.15.0"
+  version = "5.9.1"
 
   bucket        = var.blob_storage_enable_override ? var.blob_storage_override_name : null
   bucket_prefix = var.blob_storage_enable_override ? null : trimsuffix(substr(local.bucket_name, 0, 37), "-")

@@ -57,7 +57,37 @@ run "tags_applied" {
 
   # Module default tag is present
   assert {
-    condition     = aws_iam_policy.truefoundry_platform_feature_s3_policy[0].tags["terraform-module"] == "platform-features"
-    error_message = "Expected terraform-module=platform-features on truefoundry_platform_feature_s3_policy, got: ${aws_iam_policy.truefoundry_platform_feature_s3_policy[0].tags["terraform-module"]}"
+    condition     = aws_iam_policy.truefoundry_platform_feature_s3_policy[0].tags["truefoundry-terraform-module"] == "platform-features"
+    error_message = "Expected truefoundry-terraform-module=platform-features on truefoundry_platform_feature_s3_policy, got: ${aws_iam_policy.truefoundry_platform_feature_s3_policy[0].tags["truefoundry-terraform-module"]}"
+  }
+
+  # Module managed tag is present
+  assert {
+    condition     = aws_iam_policy.truefoundry_platform_feature_s3_policy[0].tags["truefoundry-managed"] == "true"
+    error_message = "Expected truefoundry-managed=true on truefoundry_platform_feature_s3_policy, got: ${aws_iam_policy.truefoundry_platform_feature_s3_policy[0].tags["truefoundry-managed"]}"
+  }
+}
+
+run "disable_default_tags" {
+  command = plan
+
+  variables {
+    cluster_name         = "test"
+    aws_account_id       = "123456789012"
+    aws_region           = "us-east-1"
+    tags                 = { "cost-center" = "test-123" }
+    disable_default_tags = true
+  }
+
+  # Caller tag is still present when default tags are disabled
+  assert {
+    condition     = aws_iam_policy.truefoundry_platform_feature_s3_policy[0].tags["cost-center"] == "test-123"
+    error_message = "Expected cost-center=test-123 on truefoundry_platform_feature_s3_policy, got: ${aws_iam_policy.truefoundry_platform_feature_s3_policy[0].tags["cost-center"]}"
+  }
+
+  # truefoundry-terraform-module must be absent when disable_default_tags=true
+  assert {
+    condition     = !contains(keys(aws_iam_policy.truefoundry_platform_feature_s3_policy[0].tags), "truefoundry-terraform-module")
+    error_message = "Expected truefoundry-terraform-module to be absent when disable_default_tags=true"
   }
 }

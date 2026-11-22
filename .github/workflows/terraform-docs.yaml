@@ -5,6 +5,8 @@ on:
 jobs:
   terraform-docs-generator:
     name: Generate terraform docs
-    uses: truefoundry/github-workflows-public/.github/workflows/terraform-doc-generator.yml@v0.1.5
+    uses: truefoundry/github-workflows-public/.github/workflows/terraform-doc-generator.yml@infra-2402-runs-on-input
     with:
       commit_ref: ${{ github.event.pull_request.head.ref }}
+      # The docs push needs the allowlisted public runner (org IP allow list).
+      runs_on: '{"group":"public-runner-group","labels":"gh-pb-runners-2c"}'

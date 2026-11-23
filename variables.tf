@@ -49,6 +49,17 @@ variable "control_plane_roles" {
   default     = ["arn:aws:iam::416964291864:role/tfy-ctl-euwe1-production-truefoundry-deps"]
 }
 
+variable "control_plane_external_id" {
+  description = "External ID that control plane roles must pass to assume the platform role. If null, no ExternalId condition is added"
+  type        = string
+  default     = null
+
+  validation {
+    condition     = var.control_plane_external_id == null || (length(var.control_plane_external_id) >= 2 && length(var.control_plane_external_id) <= 1224 && can(regex("^[\\w+=,.@:/-]+$", var.control_plane_external_id)))
+    error_message = "control_plane_external_id must be 2-1224 characters from [A-Za-z0-9_+=,.@:/-]."
+  }
+}
+
 variable "platform_role_enable_override" {
   description = "Enable overriding the platform role name. You need to pass blob_storage_override_name to pass the bucket name"
   type        = bool

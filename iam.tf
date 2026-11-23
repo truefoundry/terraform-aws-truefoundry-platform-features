@@ -210,14 +210,20 @@ resource "aws_iam_role" "truefoundry_platform_feature_iam_role" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = concat(
-      [for role in var.control_plane_roles : {
+      [for role in var.control_plane_roles : merge({
         Sid    = ""
         Effect = "Allow"
         Action = "sts:AssumeRole"
         Principal = {
           AWS = role
         }
-      }],
+        }, var.control_plane_external_id == null ? {} : {
+        Condition = {
+          StringEquals = {
+            "sts:ExternalId" = var.control_plane_external_id
+          }
+        }
+      })],
       [
         {
           Effect = "Allow"
